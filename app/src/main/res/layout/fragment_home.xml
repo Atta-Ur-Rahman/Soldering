@@ -19,8 +19,8 @@
 
         <it.beppi.knoblibrary.Knob
             android:id="@+id/knob_arrow"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             app:kAnimation="true"
             app:kFreeRotation="true"
             app:kIndicatorRelativeLength="0"
@@ -35,8 +35,8 @@
             android:layout_gravity="center_horizontal"/>
         <it.beppi.knoblibrary.Knob
             android:id="@+id/knob"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             app:kAnimation="true"
             app:kFreeRotation="true"
             app:kIndicatorRelativeLength="0"
@@ -58,18 +58,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:layout_marginTop="5sp"
         android:text="Knob power" />
 
     <TextView
-        android:id="@+id/funcIndTV"
+        android:id="@+id/oro_giallo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="22sp"
         android:layout_marginTop="5sp"
+        android:text="Oro giallo" />
 
-        android:text="Functional Indicator" />
+    <TextView
+        android:id="@+id/memo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:layout_marginTop="5sp"
+        android:text="memo 1" />
+
+
 
 
 
@@ -84,6 +95,20 @@
         android:layout_marginStart="47dp"
         android:layout_marginBottom="20dp"
         android:thumb="@drawable/sun"/>
+
+    <TextView
+        android:id="@+id/funcIndTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/switch1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginRight="60sp"
+        android:text="Functional Indicator" />
+
     <TextView
         android:id="@+id/funcLedTV"
         android:layout_width="wrap_content"
@@ -93,7 +118,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/iv_function_led"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginRight="60sp"
         android:text="Functional Led" />
 

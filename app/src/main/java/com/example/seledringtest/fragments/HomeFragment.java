@@ -8,11 +8,15 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
@@ -34,6 +38,7 @@ public class HomeFragment extends Fragment {
     TextView funcLedTV;
     Knob knob;
     public static int knob_value;
+    SwitchCompat switchCompat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,20 +52,36 @@ public class HomeFragment extends Fragment {
         funcIndTV = (TextView) view.findViewById(R.id.funcIndTV);
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
         knob = view.findViewById(R.id.knob);
+        switchCompat = view.findViewById(R.id.switch1);
+
+
+        //updating the power indicator with knob rotating
         knob.setState(7);
         knob.setOnStateChanged(new Knob.OnStateChanged() {
             @Override
             public void onState(int state) {
 
-                knobPowerTV.setText("Knob Power = " + String.valueOf(knobCalculteFunction(state)));
+                knobPowerTV.setText("Power = " + String.valueOf(knobCalculteFunction(state)));
 
                 knob_value = knobCalculteFunction(state);
 
-                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value",knob_value).commit();
+                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", knob_value).commit();
 
                 Log.d("knob number", String.valueOf(state));
 
+            }
+        });
+        //end
 
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Toast.makeText(context, "show dark theme", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "show light theme", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -104,7 +125,6 @@ public class HomeFragment extends Fragment {
             stateReturn = 0;
         }
 
-
         return stateReturn;
     }
 
@@ -140,7 +160,7 @@ public class HomeFragment extends Fragment {
 
                 if (result) {
                     int power = (int) results.get(Constants.LOCALM_KNOB_POWER);
-                    String knobPower = "Knob Power = " + power;
+                    String knobPower = "Power = " + power;
                     knob.setState(knobCalculteFunction(power));
                     knobPowerTV.setText(knobPower);
                 }
@@ -152,7 +172,7 @@ public class HomeFragment extends Fragment {
 
                 if (result) {
                     String indicator = (String) results.get(Constants.LOCALM_FUNC_INDICATOR);
-                    indicator = "Functional indicator = " + indicator;
+                    indicator = "" + indicator;
                     funcIndTV.setText(indicator);
                 }
             }
@@ -171,5 +191,6 @@ public class HomeFragment extends Fragment {
             }
         }
     };
+
 
 }
