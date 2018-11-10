@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#ebebeb"
+    tools:context="com.example.seledringtest.fragments.HomeFragment">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <it.beppi.knoblibrary.Knob
+            android:id="@+id/knob_arrow"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            app:kAnimation="true"
+            app:kFreeRotation="true"
+            app:kIndicatorRelativeLength="0"
+            app:kIndicatorWidth="0dp"
+            app:kKnobDrawable="@drawable/arrow"
+            app:kBorderColor="@color/knob_color"
+            app:kKnobDrawableRotates="true"
+            app:kNumberOfStates="13"
+            app:kShowBalloonValues="false"
+            app:kStateMarkersColor="@color/knob_color"
+            app:kSwipe="circular"
+            android:layout_gravity="center_horizontal"/>
+        <it.beppi.knoblibrary.Knob
+            android:visibility="gone"
+            android:id="@+id/knob"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:kAnimation="true"
+            app:kFreeRotation="true"
+            app:kIndicatorRelativeLength="0"
+            app:kIndicatorWidth="0dp"
+            app:kKnobDrawable="@drawable/wheel_copy"
+            app:kBorderColor="@color/knob_color"
+            app:kKnobDrawableRotates="true"
+            app:kNumberOfStates="13"
+            app:kShowBalloonValues="false"
+            app:kStateMarkersColor="@color/knob_color"
+            app:kSwipe="circular"
+            android:layout_gravity="center_horizontal"/>
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/knobPowerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="5sp"
+        android:text="Knob power" />
+
+    <TextView
+        android:id="@+id/funcIndTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5sp"
+
+        android:text="Functional Indicator" />
+
+
+
+</LinearLayout>
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginBottom="20dp"
+        android:thumb="@drawable/sun"/>
+    <TextView
+        android:id="@+id/funcLedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/iv_function_led"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="60sp"
+        android:text="Functional Led" />
+
+
+    <ImageView
+        android:id="@+id/iv_function_led"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/laser_acceso_day"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+
+
+</RelativeLayout>
