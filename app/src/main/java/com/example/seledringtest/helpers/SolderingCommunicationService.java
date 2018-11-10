@@ -91,10 +91,11 @@ public class SolderingCommunicationService extends Service {
         @Override
         public void run() {
             Random rn = new Random();
-            int min =  GeneralUtilis.getSharedPreferences(getApplicationContext()).getInt("knob_value",0); ;
-            int max = 12;           //da knob values ba dlta set ko bs te ye sirf dlta rawala bya ba nor kar ze okam
+            int min =  GeneralUtilis.getSharedPreferences(getApplicationContext()).getInt("knob_value",0);
+            int max = 12;
             while (true) {
-                int power = rn.nextInt(max - min + 1);
+               // int power = rn.nextInt(max - min + 1);
+                int power =  GeneralUtilis.getSharedPreferences(getApplicationContext()).getInt("knob_value",0);
 
                 // Send message
                 HashMap<String, Object> results = createResultsMap(true, 0, "Ok");

@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
 
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value",knob_value).commit();
 
-                Log.d("knob number", String.valueOf(state)); // da value ba send kol v SolderingCommunicationService class ta
+                Log.d("knob number", String.valueOf(state));
 
 
             }
