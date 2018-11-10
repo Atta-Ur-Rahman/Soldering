@@ -163,8 +163,9 @@ public class HomeFragment extends Fragment {
 
                 if (result) {
                     String led = (String) results.get(Constants.LOCALM_FUNC_LED);
-                    led = "Functional Led = " + led;
-                    funcLedTV.setText(led);
+                    funcLedTV.setText("Functional Led = " + led);
+
+
                     Log.d("function", led);
                 }
             }
