@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.seledringtest.R;
@@ -32,6 +34,8 @@ public class HomeFragment extends Fragment {
     TextView knobPowerTV;
     TextView funcIndTV;
     TextView funcLedTV;
+
+    ImageView ivLedFunction;
     Knob knob;
     public static int knob_value;
 
@@ -46,6 +50,7 @@ public class HomeFragment extends Fragment {
         knobPowerTV = (TextView) view.findViewById(R.id.knobPowerTV);
         funcIndTV = (TextView) view.findViewById(R.id.funcIndTV);
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
+        ivLedFunction=view.findViewById(R.id.iv_function_led);
         knob = view.findViewById(R.id.knob);
         knob.setState(7);
         knob.setOnStateChanged(new Knob.OnStateChanged() {
@@ -166,6 +171,15 @@ public class HomeFragment extends Fragment {
                     funcLedTV.setText("Functional Led = " + led);
 
 
+                    if (led.equals("Green")){
+                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
+                    }else
+                    if (led.equals("Red")){
+                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
+                    }else
+                    if (led.equals("Gray")){
+                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_day"));
+                    }
                     Log.d("function", led);
                 }
             }
