@@ -52,12 +52,12 @@ public class HomeFragment extends Fragment {
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
         ivLedFunction=view.findViewById(R.id.iv_function_led);
         knob = view.findViewById(R.id.knob);
-        knob.setState(7);
+        knob.setState(7,true);
         knob.setOnStateChanged(new Knob.OnStateChanged() {
             @Override
             public void onState(int state) {
 
-                knobPowerTV.setText("Knob Power = " + String.valueOf(knobCalculteFunction(state)));
+                knobPowerTV.setText("Knob Power = " + String.valueOf((state)));
 
                 knob_value = knobCalculteFunction(state);
 
@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment {
                 if (result) {
                     int power = (int) results.get(Constants.LOCALM_KNOB_POWER);
                     String knobPower = "Knob Power = " + power;
-                    knob.setState(knobCalculteFunction(power));
+                    knob.setState(power);
                     knobPowerTV.setText(knobPower);
                 }
             }
