@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
     Knob knob;
     public static int knob_value;
     SwitchCompat switchCompat;
+    ImageView ivDotOne,ivDotTwo,ivDotThree,ivDotFour;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +55,10 @@ public class HomeFragment extends Fragment {
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
         knob = view.findViewById(R.id.knob);
         switchCompat = view.findViewById(R.id.switch1);
+        ivDotOne = view.findViewById(R.id.iv_dot_one);
+        ivDotTwo = view.findViewById(R.id.iv_dot_two);
+        ivDotThree = view.findViewById(R.id.iv_dot_three);
+        ivDotFour = view.findViewById(R.id.iv_dot_four);
 
 
         //updating the power indicator with knob rotating
@@ -84,6 +90,34 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        //memory dot when we click on that we will store some thing locally
+        ivDotOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "what should I do when click on these dot", Toast.LENGTH_LONG).show();
+            }
+        });
+        ivDotTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "what should I do when click on these dot", Toast.LENGTH_LONG).show();
+            }
+        });
+        ivDotThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "what should I do when click on these dot", Toast.LENGTH_LONG).show();
+            }
+        });
+        ivDotFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "what should I do when click on these dot", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //end
 
 
         // Start service
@@ -191,6 +225,5 @@ public class HomeFragment extends Fragment {
             }
         }
     };
-
 
 }
