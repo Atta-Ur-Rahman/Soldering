@@ -15,28 +15,45 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
-        <it.beppi.knoblibrary.Knob
-            android:id="@+id/knob_arrow"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:kAnimation="true"
-            app:kFreeRotation="true"
-            app:kIndicatorRelativeLength="0"
-            app:kIndicatorWidth="0dp"
-            app:kKnobDrawable="@drawable/wheel"
-            app:kBorderColor="@color/knob_color"
-            app:kKnobDrawableRotates="true"
-            app:kNumberOfStates="13"
-            app:kShowBalloonValues="false"
-            app:kStateMarkersColor="@color/knob_color"
-            app:kSwipe="circular"
-            android:layout_gravity="center_horizontal"/>
         <it.beppi.knoblibrary.Knob
             android:id="@+id/knob"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="250sp"
+            android:layout_height="250sp"
+            app:kAnimationBounciness="20"
+            app:kAnimationSpeed="10"
+            app:kBalloonValuesAnimation="fade"
+            app:kBalloonValuesRelativePosition="0.25"
+            app:kBalloonValuesTextSize="4sp"
+            app:kBorderWidth="0dp"
+            app:kCircularIndicatorColor="@color/white"
+            app:kCircularIndicatorRelativePosition="0.5"
+            app:kCircularIndicatorRelativeRadius="0.1"
+            app:kDefaultState="0"
+            app:kFreeRotation="false"
+            app:kIndicatorWidth="0dp"
+            app:kKnobDrawable="@drawable/wheel"
+            app:kKnobDrawableRotates="false"
+            app:kMaxAngle="120"
+            app:kMinAngle="-120"
+            app:kNumberOfStates="13"
+            app:kSelectedStateMarkerColor="@color/knob_color"
+            app:kSelectedStateMarkerContinuous="true"
+            app:kShowBalloonValues="false"
+            app:kStateMarkersAccentColor="@color/knob_color"
+            app:kStateMarkersAccentPeriodicity="5"
+            app:kStateMarkersAccentRelativeLength="0.09"
+            app:kStateMarkersAccentWidth="2dp"
+            app:kStateMarkersColor="@color/knob_color"
+            app:kStateMarkersRelativeLength="0.08"
+            app:kStateMarkersWidth="1dp"
+            app:kSwipe="circular"
+            app:kSwipeSensitivityPixels="15"
+            android:layout_gravity="center"/>
+
+        <it.beppi.knoblibrary.Knob
+            android:visibility="gone"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             app:kAnimation="true"
             app:kFreeRotation="true"
             app:kIndicatorRelativeLength="0"
@@ -58,71 +75,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginTop="5sp"
         android:text="Knob power" />
 
     <TextView
-        android:id="@+id/oro_giallo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="22sp"
-        android:layout_marginTop="5sp"
-        android:text="Oro giallo" />
-
-    <TextView
-        android:id="@+id/memo1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="16sp"
-        android:layout_marginTop="5sp"
-        android:text="memo 1" />
-
-    <LinearLayout
+        android:id="@+id/funcIndTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5sp"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/iv_dot_one"
-            android:layout_width="15sp"
-            android:layout_height="20sp"
-            android:padding="3sp"
-            android:src="@drawable/dot"
-           />
-        <ImageView
-            android:id="@+id/iv_dot_two"
-            android:layout_width="15sp"
-            android:layout_height="20sp"
-            android:layout_marginLeft="8sp"
-            android:padding="3sp"
-            android:src="@drawable/dot"/>
-        <ImageView
-            android:id="@+id/iv_dot_three"
-            android:layout_width="15sp"
-            android:layout_height="20sp"
-            android:layout_marginLeft="8sp"
-            android:padding="3sp"
-            android:src="@drawable/dot"/>
-        <ImageView
-            android:id="@+id/iv_dot_four"
-            android:layout_width="15sp"
-            android:layout_height="20sp"
-            android:layout_marginLeft="8sp"
-            android:padding="3sp"
-            android:src="@drawable/dot"/>
-
-    </LinearLayout>
-
-
+        android:text="Functional Indicator" />
 
 
 
 </LinearLayout>
+
+
+
+
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/switch1"
@@ -133,20 +105,6 @@
         android:layout_marginStart="47dp"
         android:layout_marginBottom="20dp"
         android:thumb="@drawable/sun"/>
-
-    <TextView
-        android:id="@+id/funcIndTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/switch1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
-        android:layout_marginRight="60sp"
-        android:text="Functional Indicator" />
-
     <TextView
         android:id="@+id/funcLedTV"
         android:layout_width="wrap_content"
@@ -156,19 +114,22 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/iv_function_led"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="60sp"
         android:text="Functional Led" />
 
 
     <ImageView
         android:id="@+id/iv_function_led"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:src="@drawable/laser_acceso_day"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10sp"
+        android:layout_marginRight="10sp"
+        android:scaleType="fitXY"/>
 
 
 
