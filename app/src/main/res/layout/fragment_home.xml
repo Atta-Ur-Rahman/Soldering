@@ -1,99 +1,118 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="#ebebeb"
+    android:orientation="vertical"
     tools:context="com.example.seledringtest.fragments.HomeFragment">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <it.beppi.knoblibrary.Knob
-            android:id="@+id/knob"
-            android:layout_width="250sp"
-            android:layout_height="250sp"
-            app:kAnimationBounciness="20"
-            app:kAnimationSpeed="10"
-            app:kBalloonValuesAnimation="fade"
-            app:kBalloonValuesRelativePosition="0.25"
-            app:kBalloonValuesTextSize="4sp"
-            app:kBorderWidth="0dp"
-            app:kCircularIndicatorColor="@color/white"
-            app:kCircularIndicatorRelativePosition="0.5"
-            app:kCircularIndicatorRelativeRadius="0.1"
-            app:kDefaultState="0"
-            app:kFreeRotation="false"
-            app:kIndicatorWidth="0dp"
-            app:kKnobDrawable="@drawable/wheel"
-            app:kKnobDrawableRotates="false"
-            app:kMaxAngle="120"
-            app:kMinAngle="-120"
-            app:kNumberOfStates="13"
-            app:kSelectedStateMarkerColor="@color/knob_color"
-            app:kSelectedStateMarkerContinuous="true"
-            app:kShowBalloonValues="false"
-            app:kStateMarkersAccentColor="@color/knob_color"
-            app:kStateMarkersAccentPeriodicity="5"
-            app:kStateMarkersAccentRelativeLength="0.09"
-            app:kStateMarkersAccentWidth="2dp"
-            app:kStateMarkersColor="@color/knob_color"
-            app:kStateMarkersRelativeLength="0.08"
-            app:kStateMarkersWidth="1dp"
-            app:kSwipe="circular"
-            app:kSwipeSensitivityPixels="15"
-            android:layout_gravity="center"/>
-
-        <it.beppi.knoblibrary.Knob
-            android:visibility="gone"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            app:kAnimation="true"
-            app:kFreeRotation="true"
-            app:kIndicatorRelativeLength="0"
-            app:kIndicatorWidth="0dp"
-            app:kKnobDrawable="@drawable/arrow"
-            app:kBorderColor="@color/knob_color"
-            app:kKnobDrawableRotates="true"
-            app:kNumberOfStates="13"
-            app:kShowBalloonValues="false"
-            app:kStateMarkersColor="@color/knob_color"
-            app:kSwipe="circular"
-            android:layout_gravity="center_horizontal"/>
-
-    </FrameLayout>
-
-
-    <TextView
-        android:id="@+id/knobPowerTV"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="25sp"
-        android:layout_marginTop="5sp"
-        android:text="Knob power" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/funcIndTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5sp"
-
-        android:text="Functional Indicator" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+            <it.beppi.knoblibrary.Knob
+                android:id="@+id/knob_arrow"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                app:kAnimation="true"
+                app:kBorderColor="@color/knob_color"
+                app:kFreeRotation="true"
+                app:kIndicatorRelativeLength="0"
+                app:kIndicatorWidth="0dp"
+                app:kKnobDrawable="@drawable/arrow"
+                app:kKnobDrawableRotates="true"
+                app:kNumberOfStates="9"
+                app:kShowBalloonValues="false"
+                app:kStateMarkersColor="@color/knob_color"
+                app:kSwipe="circular" />
 
-</LinearLayout>
+            <it.beppi.knoblibrary.Knob
+                android:id="@+id/knob"
+                android:layout_width="250sp"
+                android:layout_height="250sp"
+                android:layout_gravity="center"
+                app:kAnimationBounciness="20"
+                app:kAnimationSpeed="10"
+                app:kBalloonValuesAnimation="@anim/fade_and_pop_in"
+                app:kBalloonValuesRelativePosition="0.25"
+                app:kBalloonValuesTextSize="4sp"
+                app:kBorderWidth="0dp"
+                app:kCircularIndicatorColor="@color/white"
+                app:kCircularIndicatorRelativePosition="0.5"
+                app:kCircularIndicatorRelativeRadius="0.1"
+                app:kDefaultState="0"
+                app:kFreeRotation="false"
+                app:kIndicatorWidth="0dp"
+                app:kKnobDrawable="@drawable/wheel"
+                app:kKnobDrawableRotates="false"
+                app:kMaxAngle="120"
+                app:kMinAngle="-120"
+                app:kNumberOfStates="13"
+                app:kSelectedStateMarkerColor="@color/knob_color"
+                app:kSelectedStateMarkerContinuous="true"
+                app:kShowBalloonValues="false"
+                app:kStateMarkersAccentColor="@color/knob_color"
+                app:kStateMarkersAccentPeriodicity="5"
+                app:kStateMarkersAccentRelativeLength="0.09"
+                app:kStateMarkersAccentWidth="2dp"
+                app:kStateMarkersColor="@color/knob_color"
+                app:kStateMarkersRelativeLength="0.08"
+                app:kStateMarkersWidth="1dp"
+                app:kSwipe="circular"
+                app:kSwipeSensitivityPixels="15" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/knobPowerTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5sp"
+            android:text="Knob power"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/funcIndTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5sp"
+            android:text="Functional Indicator" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_indicator"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:layout_height="80sp"/>
+
+        <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
+            android:id="@+id/view_pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            app:delimiterSize="8dp"
+            app:itemIcon="@drawable/check"
+            app:itemScale="1.5"
+            app:itemSelectedTint="@color/colorPrimaryDark"
+            app:itemSize="16dp"
+            app:itemTint="@color/colorPrimary" />
 
 
 
+
+    </LinearLayout>
 
 
     <android.support.v7.widget.SwitchCompat
@@ -104,18 +123,19 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="47dp"
         android:layout_marginBottom="20dp"
-        android:thumb="@drawable/sun"/>
+        android:thumb="@drawable/sun" />
+
     <TextView
         android:id="@+id/funcLedTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/iv_function_led"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
         android:layout_marginRight="60sp"
+        android:layout_marginBottom="20dp"
+        android:layout_toLeftOf="@id/iv_function_led"
         android:text="Functional Led" />
 
 
@@ -123,14 +143,13 @@
         android:id="@+id/iv_function_led"
         android:layout_width="40sp"
         android:layout_height="40sp"
-        android:src="@drawable/laser_acceso_day"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="10sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="10sp"
-        android:scaleType="fitXY"/>
-
+        android:layout_marginBottom="10sp"
+        android:scaleType="fitXY"
+        android:src="@drawable/laser_acceso_day" />
 
 
 </RelativeLayout>
