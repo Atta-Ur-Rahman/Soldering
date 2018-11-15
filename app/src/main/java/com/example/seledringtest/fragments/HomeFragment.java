@@ -27,6 +27,8 @@ import com.example.seledringtest.utilities.Utils;
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -41,6 +43,8 @@ public class HomeFragment extends Fragment {
     TextView funcLedTV;
     ViewPager viewPager;
 
+    int KnobSate;
+
     private ViewPagerIndicator viewPagerIndicator;
 
 
@@ -49,6 +53,7 @@ public class HomeFragment extends Fragment {
     public static int knob_value;
 
     private boolean aBooleanKnobState = true;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,22 +76,13 @@ public class HomeFragment extends Fragment {
 
                 knobPowerTV.setText(String.valueOf((state)));
 
+                KnobSate = state;
                 knobArrow.setState(knobCalculteFunction(state));
                 knob_value = knobCalculteFunction(state);
 
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", knob_value).commit();
 
-                if (state==7){
 
-                    CheckKnobStateBoolean();
-                    viewPager.setCurrentItem(4);
-                }else if (state==5){
-                    viewPager.setCurrentItem(3);
-                }else if (state==3){
-                    viewPager.setCurrentItem(2);
-                }else if (state==2){
-                    viewPager.setCurrentItem(1);
-                }
                 Log.d("knob number", String.valueOf(state));
 
 
@@ -105,18 +101,33 @@ public class HomeFragment extends Fragment {
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
         context.startService(serviceI);
 
+
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                if (KnobSate == 7) {
+                    viewPager.setCurrentItem(4);
+                } else if (KnobSate == 5) {
+                    viewPager.setCurrentItem(3);
+                } else if (KnobSate == 3) {
+                    viewPager.setCurrentItem(2);
+                } else if (KnobSate == 2) {
+                    viewPager.setCurrentItem(1);
+                }
+
+
+                handler.postDelayed(this, 200);
+            }
+        };
+        handler.postDelayed(runnable, 1000);
+
         return view;
     }
 
     private boolean CheckKnobStateBoolean() {
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                aBooleanKnobState =true;
-            }
-        },1000);
 
         return aBooleanKnobState;
     }
