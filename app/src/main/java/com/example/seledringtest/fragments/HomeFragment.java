@@ -1,5 +1,6 @@
 package com.example.seledringtest.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,19 +9,30 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seledringtest.R;
+import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
 import com.example.seledringtest.utilities.GeneralUtilis;
 import com.example.seledringtest.utilities.Utils;
+import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
+
 
 import java.util.HashMap;
 import java.util.Set;
@@ -34,9 +46,13 @@ public class HomeFragment extends Fragment {
     TextView knobPowerTV;
     TextView funcIndTV;
     TextView funcLedTV;
+    ViewPager viewPager;
+
+    private ViewPagerIndicator viewPagerIndicator;
+
 
     ImageView ivLedFunction;
-    Knob knob;
+    Knob knob, knobArrow;
     public static int knob_value;
 
     @Override
@@ -50,18 +66,21 @@ public class HomeFragment extends Fragment {
         knobPowerTV = (TextView) view.findViewById(R.id.knobPowerTV);
         funcIndTV = (TextView) view.findViewById(R.id.funcIndTV);
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
-        ivLedFunction=view.findViewById(R.id.iv_function_led);
+        ivLedFunction = view.findViewById(R.id.iv_function_led);
+        knobArrow = view.findViewById(R.id.knob_arrow);
+        knobArrow.setClickable(false);
         knob = view.findViewById(R.id.knob);
-        knob.setState(7,true);
+        knob.setState(7, true);
         knob.setOnStateChanged(new Knob.OnStateChanged() {
             @Override
             public void onState(int state) {
 
-                knobPowerTV.setText("Knob Power = " + String.valueOf((state)));
+                knobPowerTV.setText(String.valueOf((state)));
 
+                knobArrow.setState(knobCalculteFunction(state));
                 knob_value = knobCalculteFunction(state);
 
-                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value",knob_value).commit();
+                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", knob_value).commit();
 
                 Log.d("knob number", String.valueOf(state));
 
@@ -70,6 +89,12 @@ public class HomeFragment extends Fragment {
         });
 
 
+        viewPager = view.findViewById(R.id.vp_indicator);
+        viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
+        viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
+
+        viewPagerIndicator.setupWithViewPager(viewPager);
+        viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
         // Start service
         Intent serviceI = new Intent(context, SolderingCommunicationService.class);
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
@@ -146,8 +171,8 @@ public class HomeFragment extends Fragment {
                 if (result) {
                     int power = (int) results.get(Constants.LOCALM_KNOB_POWER);
                     String knobPower = "Knob Power = " + power;
-                    knob.setState(power);
-                    knobPowerTV.setText(knobPower);
+//                    knob.setState(power);
+//                    knobPowerTV.setText(knobPower);
                 }
             }
 
@@ -171,18 +196,45 @@ public class HomeFragment extends Fragment {
                     funcLedTV.setText("Functional Led = " + led);
 
 
-                    if (led.equals("Green")){
+                    if (led.equals("Green")) {
                         ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
-                    }else
-                    if (led.equals("Red")){
+                    } else if (led.equals("Red")) {
                         ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
-                    }else
-                    if (led.equals("Gray")){
+                    } else if (led.equals("Gray")) {
                         ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_day"));
                     }
                     Log.d("function", led);
                 }
             }
+        }
+    };
+
+
+    private final ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(final int position) {
+            Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
+
+            if (position == 0) {
+                knob.setState(2);
+            } else if (position == 1) {
+
+                knob.setState(3);
+            } else if (position == 2) {
+                knob.setState(5);
+            } else if (position == 3) {
+                knob.setState(7);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(final int state) {
+
         }
     };
 
