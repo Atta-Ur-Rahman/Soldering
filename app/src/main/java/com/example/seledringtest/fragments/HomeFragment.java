@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onState(int state) {
 
-                knobPowerTV.setText("Knob Power = " + String.valueOf((state)));
+                knobPowerTV.setText(String.valueOf((state)));
 
                 knobArrow.setState(knobCalculteFunction(state));
                 knob_value = knobCalculteFunction(state);
@@ -172,7 +172,7 @@ public class HomeFragment extends Fragment {
                     int power = (int) results.get(Constants.LOCALM_KNOB_POWER);
                     String knobPower = "Knob Power = " + power;
 //                    knob.setState(power);
-                    knobPowerTV.setText(knobPower);
+//                    knobPowerTV.setText(knobPower);
                 }
             }
 
