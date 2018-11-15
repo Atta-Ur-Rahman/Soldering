@@ -95,15 +95,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_indicator"
             android:layout_width="match_parent"
-            android:layout_height="80sp">
-
-            <LinearLayout
-                android:id="@+id/llMain"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical">
-            </LinearLayout>
-        </android.support.v4.view.ViewPager>
+            android:layout_height="80sp"/>
 
         <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
             android:id="@+id/view_pager_indicator"

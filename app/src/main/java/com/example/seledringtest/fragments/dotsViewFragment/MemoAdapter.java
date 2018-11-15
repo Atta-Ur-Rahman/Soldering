@@ -10,32 +10,29 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MemoAdapter extends FragmentPagerAdapter {
 
-
+    private String sliderVisibility;
     private int NUM_ITEMS = 4;
 
     public MemoAdapter(FragmentManager fm) {
-
         super(fm);
 
     }
+
 
     @Override
     public Fragment getItem(int position) {
 
 
-        switch (position){
+        switch (position) {
             case 0:
                 return new Memo1Fragment();
             case 1:
                 return new Memo2Fragment();
-            case  2:
+            case 2:
                 return new Memo3Fragment();
             case 3:
                 return new Memo4Fragment();
-
-
         }
-
         return null;
     }
 

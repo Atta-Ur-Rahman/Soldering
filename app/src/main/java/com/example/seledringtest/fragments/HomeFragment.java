@@ -1,6 +1,5 @@
 package com.example.seledringtest.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,22 +7,16 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
@@ -55,11 +48,12 @@ public class HomeFragment extends Fragment {
     Knob knob, knobArrow;
     public static int knob_value;
 
+    private boolean aBooleanKnobState = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        final View view = inflater.inflate(R.layout.fragment_home, container, false);
         context = getActivity().getApplicationContext();
         res = getResources();
 
@@ -82,6 +76,17 @@ public class HomeFragment extends Fragment {
 
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", knob_value).commit();
 
+                if (state==7){
+
+                    CheckKnobStateBoolean();
+                    viewPager.setCurrentItem(4);
+                }else if (state==5){
+                    viewPager.setCurrentItem(3);
+                }else if (state==3){
+                    viewPager.setCurrentItem(2);
+                }else if (state==2){
+                    viewPager.setCurrentItem(1);
+                }
                 Log.d("knob number", String.valueOf(state));
 
 
@@ -91,8 +96,8 @@ public class HomeFragment extends Fragment {
 
         viewPager = view.findViewById(R.id.vp_indicator);
         viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
-        viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
 
+        viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
         // Start service
@@ -101,6 +106,19 @@ public class HomeFragment extends Fragment {
         context.startService(serviceI);
 
         return view;
+    }
+
+    private boolean CheckKnobStateBoolean() {
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                aBooleanKnobState =true;
+            }
+        },1000);
+
+        return aBooleanKnobState;
     }
 
     private int knobCalculteFunction(int state) {
@@ -218,12 +236,11 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onPageSelected(final int position) {
-            Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
 
             if (position == 0) {
                 knob.setState(2);
             } else if (position == 1) {
-
                 knob.setState(3);
             } else if (position == 2) {
                 knob.setState(5);
