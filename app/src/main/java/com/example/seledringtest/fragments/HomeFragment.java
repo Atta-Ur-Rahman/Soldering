@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seledringtest.R;
+import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
 import com.example.seledringtest.utilities.GeneralUtilis;
@@ -90,7 +91,8 @@ public class HomeFragment extends Fragment {
 
         viewPager = view.findViewById(R.id.vp_indicator);
         viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
-        viewPager.setAdapter(new MyPagerAdapter());
+        viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
+
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
         // Start service
@@ -169,7 +171,7 @@ public class HomeFragment extends Fragment {
                 if (result) {
                     int power = (int) results.get(Constants.LOCALM_KNOB_POWER);
                     String knobPower = "Knob Power = " + power;
-                    knob.setState(power);
+//                    knob.setState(power);
                     knobPowerTV.setText(knobPower);
                 }
             }
@@ -207,41 +209,6 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    private class MyPagerAdapter
-            extends PagerAdapter {
-        @Override
-        public int getCount() {
-            return 4;
-        }
-
-        @SuppressLint("SetTextI18n")
-        @Override
-        public Object instantiateItem(final ViewGroup container, final int position) {
-
-
-            final TextView textView = new TextView(getActivity());
-            textView.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT));
-            textView.setGravity(Gravity.CENTER );
-            textView.setText("Page " + position);
-            container.addView(textView);
-            return textView;
-        }
-
-        @Override
-        public boolean isViewFromObject(final View view, final Object object) {
-            return view.equals(object);
-        }
-
-        @Override
-        public void destroyItem(final ViewGroup container, final int position, final Object object) {
-            container.removeView((View) object);
-        }
-
-        @Override
-        public CharSequence getPageTitle(final int position) {
-            return String.valueOf(position);
-        }
-    }
 
     private final ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -252,6 +219,17 @@ public class HomeFragment extends Fragment {
         @Override
         public void onPageSelected(final int position) {
             Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
+
+            if (position == 0) {
+                knob.setState(2);
+            } else if (position == 1) {
+
+                knob.setState(3);
+            } else if (position == 2) {
+                knob.setState(5);
+            } else if (position == 3) {
+                knob.setState(7);
+            }
         }
 
         @Override
