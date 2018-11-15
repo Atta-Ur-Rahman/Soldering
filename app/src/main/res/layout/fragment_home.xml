@@ -108,12 +108,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            app:delimiterSize="8dp"
+            app:delimiterSize="5dp"
             app:itemIcon="@drawable/check"
-            app:itemScale="1.5"
-            app:itemSelectedTint="@color/colorPrimaryDark"
+            app:itemScale="1"
+            app:itemSelectedTint="@color/drk_gray"
             app:itemSize="16dp"
-            app:itemTint="@color/colorPrimary" />
+            app:itemTint="@color/indicator_unselceted_color" />
 
 
 

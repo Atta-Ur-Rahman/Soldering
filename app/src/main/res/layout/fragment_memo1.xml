@@ -9,6 +9,7 @@
     tools:context=".fragments.dotsViewFragment.Memo1Fragment">
 
     <TextView
+        android:id="@+id/tv_memo1_txet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=" oro giallo power2"
@@ -17,6 +18,7 @@
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/tv_memo1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
