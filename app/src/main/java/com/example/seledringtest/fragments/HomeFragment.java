@@ -13,10 +13,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
@@ -43,6 +46,8 @@ public class HomeFragment extends Fragment {
     TextView funcLedTV;
     ViewPager viewPager;
 
+    int i;
+
     int KnobSate;
 
     private ViewPagerIndicator viewPagerIndicator;
@@ -51,6 +56,10 @@ public class HomeFragment extends Fragment {
     ImageView ivLedFunction;
     Knob knob, knobArrow;
     public static int knob_value;
+
+
+    private String strMemo1Name, strMemo2Name, strMemo3Name, strMemo4Name;
+    private int memoPower1, memoPower2, memoPower3, memoPower4;
 
     private boolean aBooleanKnobState = true;
 
@@ -62,6 +71,9 @@ public class HomeFragment extends Fragment {
         context = getActivity().getApplicationContext();
         res = getResources();
 
+        GeneralUtilis.putValueInEditor(getActivity()).putBoolean("power_handler", true).commit();
+        getValueOnMemoryFragment();
+
         knobPowerTV = (TextView) view.findViewById(R.id.knobPowerTV);
         funcIndTV = (TextView) view.findViewById(R.id.funcIndTV);
         funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
@@ -69,26 +81,20 @@ public class HomeFragment extends Fragment {
         knobArrow = view.findViewById(R.id.knob_arrow);
         knobArrow.setClickable(false);
         knob = view.findViewById(R.id.knob);
-        knob.setState(7, true);
+        knob.setState(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0));
         knob.setOnStateChanged(new Knob.OnStateChanged() {
             @Override
             public void onState(int state) {
 
                 knobPowerTV.setText(String.valueOf((state)));
-
                 KnobSate = state;
-                knobArrow.setState(knobCalculteFunction(state));
-                knob_value = knobCalculteFunction(state);
-
-                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", knob_value).commit();
-
-
-                Log.d("knob number", String.valueOf(state));
-
+                GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
             }
         });
 
+
+        knobPowerTV.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0)));
 
         viewPager = view.findViewById(R.id.vp_indicator);
         viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
@@ -96,76 +102,40 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
+        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("indicator_position",0));
         // Start service
         Intent serviceI = new Intent(context, SolderingCommunicationService.class);
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
         context.startService(serviceI);
 
 
-        final Handler handler = new Handler();
-        final Runnable runnable = new Runnable() {
+        final Handler handler1 = new Handler();
+        final Runnable runnable1 = new Runnable() {
             @Override
             public void run() {
 
-                if (KnobSate == 7) {
-                    viewPager.setCurrentItem(4);
-                } else if (KnobSate == 5) {
-                    viewPager.setCurrentItem(3);
-                } else if (KnobSate == 3) {
-                    viewPager.setCurrentItem(2);
-                } else if (KnobSate == 2) {
+                int power = Integer.parseInt(knobPowerTV.getText().toString());
+
+                if (power == memoPower1) {
+                    viewPager.setCurrentItem(0);
+                } else if (power == memoPower2) {
                     viewPager.setCurrentItem(1);
+                } else if (power == memoPower3) {
+                    viewPager.setCurrentItem(2);
+                } else if (power == memoPower4) {
+                    viewPager.setCurrentItem(3);
                 }
+                handler1.postDelayed(this, 200);
 
 
-                handler.postDelayed(this, 200);
             }
         };
-        handler.postDelayed(runnable, 1000);
+        handler1.postDelayed(runnable1, 1000);
+
 
         return view;
     }
 
-    private boolean CheckKnobStateBoolean() {
-
-
-        return aBooleanKnobState;
-    }
-
-    private int knobCalculteFunction(int state) {
-        int stateReturn = 0;
-
-        if (state == 7) {
-            stateReturn = 1;
-        } else if (state == 8) {
-            stateReturn = 2;
-        } else if (state == 9) {
-            stateReturn = 3;
-        } else if (state == 10) {
-            stateReturn = 4;
-        } else if (state == 11) {
-            stateReturn = 5;
-        } else if (state == 12) {
-            stateReturn = 6;
-        } else if (state == 0) {
-            stateReturn = 7;
-        } else if (state == 1) {
-            stateReturn = 8;
-        } else if (state == 2) {
-            stateReturn = 9;
-        } else if (state == 3) {
-            stateReturn = 10;
-        } else if (state == 4) {
-            stateReturn = 11;
-        } else if (state == 5) {
-            stateReturn = 12;
-        } else if (state == 6) {
-            stateReturn = 0;
-        }
-
-
-        return stateReturn;
-    }
 
     @Override
     public void onPause() {
@@ -249,14 +219,17 @@ public class HomeFragment extends Fragment {
         public void onPageSelected(final int position) {
 //            Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
 
+
+            GeneralUtilis.putValueInEditor(getActivity()).putInt("indicator_position",position).commit();
+
             if (position == 0) {
-                knob.setState(2);
+                knob.setState(memoPower1);
             } else if (position == 1) {
-                knob.setState(3);
+                knob.setState(memoPower2);
             } else if (position == 2) {
-                knob.setState(5);
+                knob.setState(memoPower3);
             } else if (position == 3) {
-                knob.setState(7);
+                knob.setState(memoPower4);
             }
         }
 
@@ -265,5 +238,19 @@ public class HomeFragment extends Fragment {
 
         }
     };
+
+    private void getValueOnMemoryFragment() {
+
+
+        strMemo1Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name ");
+        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo1_power", 0);
+        strMemo2Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name ");
+        memoPower2 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_2_power", 0);
+        strMemo3Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name ");
+        memoPower3 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 0);
+        strMemo4Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name ");
+        memoPower4 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 0);
+
+    }
 
 }

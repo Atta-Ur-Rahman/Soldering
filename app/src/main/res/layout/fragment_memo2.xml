@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:id="@+id/tv_memo2_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="oro nero power3"
@@ -17,6 +18,7 @@
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/tv_memo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
