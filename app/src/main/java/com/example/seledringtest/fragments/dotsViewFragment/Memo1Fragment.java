@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seledringtest.R;
+import com.example.seledringtest.utilities.GeneralUtilis;
 
 import org.w3c.dom.Text;
 
@@ -45,6 +46,8 @@ public class Memo1Fragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_memo1, container, false);
         ButterKnife.bind(this, view);
 
+
+        tvMemo1Text.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name","Memo Name"));
         tvMemo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

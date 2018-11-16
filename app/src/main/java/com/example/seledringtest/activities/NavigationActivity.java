@@ -83,7 +83,7 @@ public class NavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            GeneralUtilis.connectFragment(this,new HomeFragment());
+            GeneralUtilis.withOutBackStackConnectFragment(this,new HomeFragment());
         } else if (id == R.id.nav_memorie) {
          GeneralUtilis.withOutBackStackConnectFragment(this,new MemoryFragment());
         } else if (id == R.id.nav_informazioni) {
