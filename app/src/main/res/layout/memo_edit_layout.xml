@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20sp"
+            android:text="Edit Memo"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_edit_cross"
+            android:layout_width="19dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/cross" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_memo_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:gravity="center_vertical"
+            android:hint="Memo Name"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            app:met_floatingLabel="highlight" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_power"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="Power"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            app:met_floatingLabel="highlight" />
+
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            android:layout_margin="30sp"
+            android:background="@drawable/round_back_text_view"
+            android:gravity="center"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,52 +36,53 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import it.beppi.knoblibrary.Knob;
 
 public class HomeFragment extends Fragment {
     private final static String TAG = "MainActivity";
     Context context = null;
     Resources res = null;
+
+    @BindView(R.id.tv_knob_power)
     TextView knobPowerTV;
-    TextView funcIndTV;
+    @BindView(R.id.tv_func_led)
     TextView funcLedTV;
+    @BindView(R.id.vp_memo)
     ViewPager viewPager;
-
-    int i;
-
-    int KnobSate;
-
-    private ViewPagerIndicator viewPagerIndicator;
-
-
+    @BindView(R.id.view_pager_indicator)
+    ViewPagerIndicator viewPagerIndicator;
+    @BindView(R.id.iv_function_led)
     ImageView ivLedFunction;
-    Knob knob, knobArrow;
-    public static int knob_value;
+    @BindView(R.id.knob)
+    Knob knob;
 
+    private int KnobSate;
+    private MemoAdapter adapter;
 
     private String strMemo1Name, strMemo2Name, strMemo3Name, strMemo4Name;
     private int memoPower1, memoPower2, memoPower3, memoPower4;
 
     private boolean aBooleanKnobState = true;
 
+    boolean aBooleanMemo1, aBooleanMemo2, aBooleanMemo3, aBooleanMemo4;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ButterKnife.bind(this, view);
+
         context = getActivity().getApplicationContext();
         res = getResources();
 
-        GeneralUtilis.putValueInEditor(getActivity()).putBoolean("power_handler", true).commit();
         getValueOnMemoryFragment();
+        getBoleanMemoryFragment();
 
-        knobPowerTV = (TextView) view.findViewById(R.id.knobPowerTV);
-        funcIndTV = (TextView) view.findViewById(R.id.funcIndTV);
-        funcLedTV = (TextView) view.findViewById(R.id.funcLedTV);
-        ivLedFunction = view.findViewById(R.id.iv_function_led);
-        knobArrow = view.findViewById(R.id.knob_arrow);
-        knobArrow.setClickable(false);
-        knob = view.findViewById(R.id.knob);
+
         knob.setState(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0));
         knob.setOnStateChanged(new Knob.OnStateChanged() {
             @Override
@@ -94,15 +96,14 @@ public class HomeFragment extends Fragment {
         });
 
 
-        knobPowerTV.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0)));
+        adapter = new MemoAdapter(getActivity().getSupportFragmentManager(),getActivity());
+        viewPager.setAdapter(adapter);
 
-        viewPager = view.findViewById(R.id.vp_indicator);
-        viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
-
-        viewPager.setAdapter(new MemoAdapter(getActivity().getSupportFragmentManager()));
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
-        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("indicator_position",0));
+        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0));
+        knobPowerTV.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0)));
+
         // Start service
         Intent serviceI = new Intent(context, SolderingCommunicationService.class);
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
@@ -125,12 +126,12 @@ public class HomeFragment extends Fragment {
                 } else if (power == memoPower4) {
                     viewPager.setCurrentItem(3);
                 }
-                handler1.postDelayed(this, 200);
+                handler1.postDelayed(this, 100);
 
 
             }
         };
-        handler1.postDelayed(runnable1, 1000);
+        handler1.postDelayed(runnable1, 300);
 
 
         return view;
@@ -182,7 +183,7 @@ public class HomeFragment extends Fragment {
                 if (result) {
                     String indicator = (String) results.get(Constants.LOCALM_FUNC_INDICATOR);
                     indicator = "Functional indicator = " + indicator;
-                    funcIndTV.setText(indicator);
+
                 }
             }
 
@@ -217,10 +218,9 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onPageSelected(final int position) {
-//            Toast.makeText(getActivity(), "Page selected " + position, Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
 
-
-            GeneralUtilis.putValueInEditor(getActivity()).putInt("indicator_position",position).commit();
+            GeneralUtilis.putValueInEditor(getActivity()).putInt("view_pager_position", position).commit();
 
             if (position == 0) {
                 knob.setState(memoPower1);
@@ -243,7 +243,7 @@ public class HomeFragment extends Fragment {
 
 
         strMemo1Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name ");
-        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo1_power", 0);
+        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 0);
         strMemo2Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name ");
         memoPower2 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_2_power", 0);
         strMemo3Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name ");
@@ -251,6 +251,14 @@ public class HomeFragment extends Fragment {
         strMemo4Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name ");
         memoPower4 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 0);
 
+    }
+
+    private void getBoleanMemoryFragment() {
+
+        aBooleanMemo1 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo1", true);
+        aBooleanMemo2 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo2", true);
+        aBooleanMemo3 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo3", true);
+        aBooleanMemo4 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo4", true);
     }
 
 }
