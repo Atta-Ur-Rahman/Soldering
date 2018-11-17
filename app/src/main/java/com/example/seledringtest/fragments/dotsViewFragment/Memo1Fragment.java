@@ -45,45 +45,10 @@ public class Memo1Fragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_memo1, container, false);
         ButterKnife.bind(this, view);
-
-
-        tvMemo1Text.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name","Memo Name"));
-        tvMemo1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editTextDailog();
-            }
-        });
-
+        tvMemo1Text.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name"));
 
         return view;
     }
 
-    private void editTextDailog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Title");
 
-// Set up the input
-        final EditText input = new EditText(getActivity());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
-        builder.setView(input);
-
-// Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                m_Text = input.getText().toString();
-                Toast.makeText(getActivity(), m_Text, Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
 }

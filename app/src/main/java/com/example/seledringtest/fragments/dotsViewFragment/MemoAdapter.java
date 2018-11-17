@@ -1,8 +1,11 @@
 package com.example.seledringtest.fragments.dotsViewFragment;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.seledringtest.utilities.GeneralUtilis;
 
 /**
  * Created by AttaUrRahman on 5/8/2018.
@@ -10,11 +13,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MemoAdapter extends FragmentPagerAdapter {
 
-    private String sliderVisibility;
     private int NUM_ITEMS = 4;
 
-    public MemoAdapter(FragmentManager fm) {
+    public MemoAdapter(FragmentManager fm, Context context) {
         super(fm);
+        NUM_ITEMS = GeneralUtilis.getSharedPreferences(context).getInt("memo_view_pager", 4);
 
     }
 
