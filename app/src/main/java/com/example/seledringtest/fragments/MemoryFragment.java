@@ -1,33 +1,22 @@
 package com.example.seledringtest.fragments;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.utilities.GeneralUtilis;
-
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,6 +65,10 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
     private String strName, strPower;
     private int power;
 
+    private String strMemo1Name, strMemo2Name, strMemo3Name, strMemo4Name;
+    private int memoPower1, memoPower2, memoPower3, memoPower4;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -112,11 +105,11 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
         tvMemo1Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name "));
         tvMemo1Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 1)));
         tvMemo2Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name "));
-        tvMemo2Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo2_power", 3)));
+        tvMemo2Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo2_power", 2)));
         tvMemo3Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name "));
-        tvMemo3Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 5)));
+        tvMemo3Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 3)));
         tvMemo4Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name "));
-        tvMemo4Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 7)));
+        tvMemo4Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 4)));
     }
 
     private void getValueMemoTextViews() {
@@ -190,11 +183,14 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
                     power = Integer.parseInt(strPower);
 
                     if (power <= 12) {
+                        boolean checkMemoNameAndPower = getValueOnMemoryFragment(strName, strPower);
 
-                        tvName.setText(strName);
-                        tvPower.setText(strPower);
-                        getValueMemoTextViews();
-                        editDailog.dismiss();
+                        if (checkMemoNameAndPower) {
+                            tvName.setText(strName);
+                            tvPower.setText(strPower);
+                            getValueMemoTextViews();
+                            editDailog.dismiss();
+                        }
 
                     } else {
                         etPower.setError("your value is greater than 12");
@@ -214,40 +210,105 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.sw_memo1:
-                GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_1", isChecked).commit();
-                if (isChecked) {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 0).commit();
-                }else {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
+                if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_2", false)) {
+
+                    Toast.makeText(getActivity(), "first delete to memo 2", Toast.LENGTH_SHORT).show();
+                    swMemo1.setChecked(false);
+                } else {
+                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_1", isChecked).commit();
+                    if (isChecked) {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 0).commit();
+                    } else {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
+                    }
+
                 }
                 break;
             case R.id.sw_memo2:
+                if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_3", false)) {
 
-                GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_2", isChecked).commit();
-                if (isChecked) {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
-                }else{
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
+                    Toast.makeText(getActivity(), "first delete to memo 3", Toast.LENGTH_SHORT).show();
+                    swMemo2.setChecked(false);
+                } else {
+                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_2", isChecked).commit();
+                    if (isChecked) {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
+                    } else {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
+                    }
                 }
                 break;
             case R.id.sw_memo3:
-                GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_3", isChecked).commit();
-                if (isChecked) {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
-                }else {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 3).commit();
+                if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_4", false)) {
+
+                    Toast.makeText(getActivity(), "first delete to memo 4", Toast.LENGTH_SHORT).show();
+                    swMemo3.setChecked(false);
+                } else {
+
+                    if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_2", false)) {
+                        GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_3", isChecked).commit();
+                        if (isChecked) {
+                            GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
+                        } else {
+                            GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 3).commit();
+                        }
+                    } else {
+                        Toast.makeText(getActivity(), "add 2", Toast.LENGTH_SHORT).show();
+                        swMemo3.setChecked(true);
+                    }
                 }
                 break;
             case R.id.sw_memo4:
-                GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_4", isChecked).commit();
-                if (isChecked) {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 3).commit();
-                }else {
-                    GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 4).commit();
+
+                if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_3", false)) {
+                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_4", isChecked).commit();
+                    if (isChecked) {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 3).commit();
+                    } else {
+                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 4).commit();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "first add memo 3", Toast.LENGTH_SHORT).show();
+                    swMemo4.setChecked(true);
                 }
+
                 break;
 
         }
+    }
 
+    private boolean getValueOnMemoryFragment(String stringName, String strPower) {
+
+        boolean returnBoolean = false;
+
+        strMemo1Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name ");
+        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 0);
+        strMemo2Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name ");
+        memoPower2 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_2_power", 0);
+        strMemo3Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name ");
+        memoPower3 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 0);
+        strMemo4Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name ");
+        memoPower4 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 0);
+
+
+        if (stringName.equals(strMemo1Name) || stringName.equals(strMemo2Name) || stringName.equals(strMemo3Name) || stringName.equals(strMemo4Name)) {
+            Toast.makeText(getActivity(), "memo name already exist", Toast.LENGTH_SHORT).show();
+            returnBoolean = false;
+
+        } else {
+
+            if (strPower.equals(String.valueOf(memoPower1)) || strPower.equals(String.valueOf(memoPower2)) || strPower.equals(String.valueOf(memoPower3)) || strPower.equals(String.valueOf(memoPower4))) {
+
+                Toast.makeText(getActivity(), "memo power already exist", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getActivity(), "Successful", Toast.LENGTH_SHORT).show();
+                returnBoolean = true;
+            }
+
+        }
+
+
+        return returnBoolean;
     }
 }

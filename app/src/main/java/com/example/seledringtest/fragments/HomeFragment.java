@@ -96,9 +96,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-        adapter = new MemoAdapter(getActivity().getSupportFragmentManager(),getActivity());
+        adapter = new MemoAdapter(getActivity(),getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
         viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0));
@@ -108,6 +107,14 @@ public class HomeFragment extends Fragment {
         Intent serviceI = new Intent(context, SolderingCommunicationService.class);
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
         context.startService(serviceI);
+
+        knobPowerTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Refresh();
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+        });
 
 
         final Handler handler1 = new Handler();
@@ -135,6 +142,11 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void Refresh() {
+
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
 
@@ -218,7 +230,6 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onPageSelected(final int position) {
-            adapter.notifyDataSetChanged();
 
             GeneralUtilis.putValueInEditor(getActivity()).putInt("view_pager_position", position).commit();
 
@@ -243,13 +254,13 @@ public class HomeFragment extends Fragment {
 
 
         strMemo1Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name ");
-        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 0);
+        memoPower1 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 1);
         strMemo2Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name ");
-        memoPower2 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_2_power", 0);
+        memoPower2 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_2_power", 2);
         strMemo3Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name ");
-        memoPower3 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 0);
+        memoPower3 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 3);
         strMemo4Name = GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name ");
-        memoPower4 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 0);
+        memoPower4 = GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 4);
 
     }
 
@@ -260,5 +271,6 @@ public class HomeFragment extends Fragment {
         aBooleanMemo3 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo3", true);
         aBooleanMemo4 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo4", true);
     }
+
 
 }

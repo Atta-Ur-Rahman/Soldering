@@ -15,7 +15,7 @@ public class MemoAdapter extends FragmentPagerAdapter {
 
     private int NUM_ITEMS = 4;
 
-    public MemoAdapter(FragmentManager fm, Context context) {
+    public MemoAdapter( Context context,FragmentManager fm) {
         super(fm);
         NUM_ITEMS = GeneralUtilis.getSharedPreferences(context).getInt("memo_view_pager", 4);
 
