@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.activities.MainActivity;
+import com.example.seledringtest.fragments.dotsViewFragment.Memo1Fragment;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
@@ -101,7 +102,7 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(adapter);
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
-        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0));
+        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0),true);
         knobPowerTV.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0)));
 
         // Start service
@@ -109,11 +110,22 @@ public class HomeFragment extends Fragment {
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
         context.startService(serviceI);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("refresh",false)){
+                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("refresh",false).commit();
+                    Refresh();
+                }
+            }
+        },1);
+
         knobPowerTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Refresh();
-                viewPager.getAdapter().notifyDataSetChanged();
+
+
             }
         });
 
@@ -147,7 +159,9 @@ public class HomeFragment extends Fragment {
 
     private void Refresh() {
 
-        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        getActivity().finish();
+        getActivity().startActivity(getActivity().getIntent());
+//        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
 

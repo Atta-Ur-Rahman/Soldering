@@ -76,6 +76,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
 
         ButterKnife.bind(this, view);
 
+
         tvMemo1Edit.setOnClickListener(this);
         tvMemo2Edit.setOnClickListener(this);
         tvMemo3Edit.setOnClickListener(this);
