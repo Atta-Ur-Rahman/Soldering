@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.seledringtest.R;
+import com.example.seledringtest.fragments.HomeFragment;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
+import com.example.seledringtest.utilities.GeneralUtilis;
 import com.example.seledringtest.utilities.Utils;
 
 import java.util.HashMap;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        GeneralUtilis.withOutBackStackConnectFragment(this,new HomeFragment());
 
     }
 

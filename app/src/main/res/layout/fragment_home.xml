@@ -85,11 +85,14 @@
             android:textSize="60sp"
             android:textStyle="bold"/>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80sp">
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_memo"
             android:layout_width="match_parent"
-            android:layout_height="80sp"/>
+            android:layout_height="match_parent"/>
+        </LinearLayout>
 
         <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
             android:id="@+id/view_pager_indicator"

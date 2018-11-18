@@ -41,7 +41,7 @@ public class NavigationActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Fragment fragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
     @Override
@@ -83,15 +83,19 @@ public class NavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            GeneralUtilis.withOutBackStackConnectFragment(this,new HomeFragment());
+            GeneralUtilis.putValueInEditor(this).putBoolean("refresh", true).commit();
+            GeneralUtilis.withOutBackStackConnectFragment(this, new HomeFragment());
         } else if (id == R.id.nav_memorie) {
-         GeneralUtilis.withOutBackStackConnectFragment(this,new MemoryFragment());
+            GeneralUtilis.putValueInEditor(this).putBoolean("refresh", true).commit();
+            GeneralUtilis.withOutBackStackConnectFragment(this, new MemoryFragment());
         } else if (id == R.id.nav_informazioni) {
+            GeneralUtilis.putValueInEditor(this).putBoolean("refresh", true).commit();
 
         } else if (id == R.id.nav_impostazioni) {
+            GeneralUtilis.putValueInEditor(this).putBoolean("refresh", true).commit();
 
         } else if (id == R.id.nav_contatti) {
-
+            GeneralUtilis.putValueInEditor(this).putBoolean("refresh", true).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
