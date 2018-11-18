@@ -212,7 +212,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
             case R.id.sw_memo1:
                 if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_2", false)) {
 
-                    Toast.makeText(getActivity(), "first delete to memo 2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "first delete the memo 2", Toast.LENGTH_SHORT).show();
                     swMemo1.setChecked(false);
                 } else {
                     GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_1", isChecked).commit();
@@ -227,7 +227,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
             case R.id.sw_memo2:
                 if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_3", false)) {
 
-                    Toast.makeText(getActivity(), "first delete to memo 3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "first delete the memo 3", Toast.LENGTH_SHORT).show();
                     swMemo2.setChecked(false);
                 } else {
                     GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_2", isChecked).commit();
@@ -241,7 +241,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
             case R.id.sw_memo3:
                 if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_4", false)) {
 
-                    Toast.makeText(getActivity(), "first delete to memo 4", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "first delete the memo 4", Toast.LENGTH_SHORT).show();
                     swMemo3.setChecked(false);
                 } else {
 
@@ -253,7 +253,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
                             GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 3).commit();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "add 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "add the memo 2", Toast.LENGTH_SHORT).show();
                         swMemo3.setChecked(true);
                     }
                 }
@@ -268,7 +268,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
                         GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 4).commit();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "first add memo 3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "first add the memo 3", Toast.LENGTH_SHORT).show();
                     swMemo4.setChecked(true);
                 }
 

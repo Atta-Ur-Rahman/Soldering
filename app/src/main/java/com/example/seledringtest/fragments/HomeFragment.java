@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seledringtest.R;
+import com.example.seledringtest.activities.MainActivity;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
