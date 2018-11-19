@@ -104,13 +104,13 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
     private void setVauleMemoTextViews() {
 
         tvMemo1Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name "));
-        tvMemo1Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 1)));
+        tvMemo1Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_1_power", 3)));
         tvMemo2Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name "));
-        tvMemo2Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo2_power", 2)));
+        tvMemo2Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo2_power", 5)));
         tvMemo3Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name "));
-        tvMemo3Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 3)));
+        tvMemo3Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_3_power", 7)));
         tvMemo4Name.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name", "Memo Name "));
-        tvMemo4Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 4)));
+        tvMemo4Power.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("memo_4_power", 9)));
     }
 
     private void getValueMemoTextViews() {

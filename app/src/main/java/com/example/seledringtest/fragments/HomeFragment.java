@@ -109,7 +109,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 GeneralUtilis.putValueInEditor(getActivity()).putBoolean("night_mode", isChecked).commit();
-                Toast.makeText(context, String.valueOf(isChecked), Toast.LENGTH_SHORT).show();
                 Refresh();
             }
         });
@@ -189,9 +188,8 @@ public class HomeFragment extends Fragment {
     private void Refresh() {
 
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+        getActivity().overridePendingTransition(R.anim.scale_out,R.anim.scale_in);
         getActivity().startActivity(getActivity().getIntent());
-//        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
 

@@ -47,7 +47,7 @@
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
-                app:kCircularIndicatorColor="@color/drk_gray"
+                app:kCircularIndicatorColor="@color/white"
                 app:kCircularIndicatorRelativePosition="0.5"
                 app:kCircularIndicatorRelativeRadius="0.1"
                 app:kDefaultState="0"
@@ -144,6 +144,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:layout_marginRight="60sp"
+        android:textColor="@color/white"
         android:layout_marginBottom="20dp"
         android:layout_toLeftOf="@id/iv_function_led"
         android:text="Functional Led" />
