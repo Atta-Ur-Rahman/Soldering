@@ -35,8 +35,12 @@ public class Memo3Fragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_memo3, container, false);
         ButterKnife.bind(this, view);
 
-        tvMemoText.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name","Memo Name"));
+        tvMemoText.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_3_name", "Memo Name"));
 
+        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false)) {
+            tvMemoText.setTextColor(getResources().getColor(R.color.light_gray));
+            tvMemo.setTextColor(getResources().getColor(R.color.light_gray));
+        }
 
         return view;
     }

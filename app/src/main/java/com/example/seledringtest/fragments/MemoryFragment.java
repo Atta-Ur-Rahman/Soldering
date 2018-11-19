@@ -231,11 +231,16 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
                     Toast.makeText(getActivity(), "first delete the memo 3", Toast.LENGTH_SHORT).show();
                     swMemo2.setChecked(false);
                 } else {
-                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_2", isChecked).commit();
-                    if (isChecked) {
-                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
+                    if (!GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_1", false)) {
+                        GeneralUtilis.putValueInEditor(getActivity()).putBoolean("sw_memo_2", isChecked).commit();
+                        if (isChecked) {
+                            GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 1).commit();
+                        } else {
+                            GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
+                        }
                     } else {
-                        GeneralUtilis.putValueInEditor(getActivity()).putInt("memo_view_pager", 2).commit();
+                        Toast.makeText(getActivity(), "add the memo 1", Toast.LENGTH_SHORT).show();
+                        swMemo2.setChecked(true);
                     }
                 }
                 break;

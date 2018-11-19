@@ -11,12 +11,14 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,6 +61,11 @@ public class HomeFragment extends Fragment {
     ImageView ivLedFunction;
     @BindView(R.id.knob)
     Knob knob;
+    @BindView(R.id.tv_no_memory)
+    TextView tvNoMemory;
+
+    @BindView(R.id.sw_night_mod)
+    SwitchCompat swNightMode;
 
     private int KnobSate;
     private MemoAdapter adapter;
@@ -68,18 +75,50 @@ public class HomeFragment extends Fragment {
 
     private boolean aBooleanKnobState = true;
 
-    boolean aBooleanMemo1, aBooleanMemo2, aBooleanMemo3, aBooleanMemo4;
+    boolean aBooleanMemo1, aBooleanMemo2, aBooleanMemo3, aBooleanMemo4, aBooleanNightMode;
+
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        aBooleanNightMode = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false);
+        if (aBooleanNightMode) {
+            view = inflater.inflate(R.layout.fragment_home_night, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_home, container, false);
+        }
+
 
         ButterKnife.bind(this, view);
 
         context = getActivity().getApplicationContext();
         res = getResources();
+
+        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_1",false)){
+            tvNoMemory.setVisibility(View.VISIBLE);
+            tvNoMemory.setText("No Memory Present");
+
+        }
+
+        swNightMode.setChecked(aBooleanNightMode);
+
+        swNightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                GeneralUtilis.putValueInEditor(getActivity()).putBoolean("night_mode", isChecked).commit();
+                Toast.makeText(context, String.valueOf(isChecked), Toast.LENGTH_SHORT).show();
+                Refresh();
+            }
+        });
+
+////refresh the hime fragment
+        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("refresh", false)) {
+            GeneralUtilis.putValueInEditor(getActivity()).putBoolean("refresh", false).commit();
+            Refresh();
+        }
 
         getValueOnMemoryFragment();
         getBoleanMemoryFragment();
@@ -98,11 +137,11 @@ public class HomeFragment extends Fragment {
         });
 
 
-        adapter = new MemoAdapter(getActivity(),getActivity().getSupportFragmentManager());
+        adapter = new MemoAdapter(getActivity(), getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
-        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0),true);
+        viewPager.setCurrentItem(GeneralUtilis.getSharedPreferences(getActivity()).getInt("view_pager_position", 0), true);
         knobPowerTV.setText(String.valueOf(GeneralUtilis.getSharedPreferences(getActivity()).getInt("knob_value", 0)));
 
         // Start service
@@ -110,16 +149,6 @@ public class HomeFragment extends Fragment {
         serviceI.putExtra(SolderingCommunicationService.HELLO, true);
         context.startService(serviceI);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("refresh",false)){
-                    GeneralUtilis.putValueInEditor(getActivity()).putBoolean("refresh",false).commit();
-                    Refresh();
-                }
-            }
-        },1);
 
         knobPowerTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,13 +251,27 @@ public class HomeFragment extends Fragment {
                     String led = (String) results.get(Constants.LOCALM_FUNC_LED);
                     funcLedTV.setText("Functional Led = " + led);
 
+                    aBooleanNightMode = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false);
 
                     if (led.equals("Green")) {
-                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
+                        if (aBooleanNightMode) {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
+                        } else {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
+                        }
                     } else if (led.equals("Red")) {
-                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
+                        if (aBooleanNightMode) {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_night"));
+                        } else {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
+
+                        }
                     } else if (led.equals("Gray")) {
-                        ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_day"));
+                        if (aBooleanNightMode) {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_night"));
+                        } else {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_day"));
+                        }
                     }
                     Log.d("function", led);
                 }

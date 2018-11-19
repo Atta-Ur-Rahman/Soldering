@@ -28,9 +28,9 @@ public class Memo1Fragment extends Fragment {
 
     private View view;
     @BindView(R.id.tv_memo1_txet)
-    TextView tvMemo1Text;
+    TextView tvMemoText;
     @BindView(R.id.tv_memo1)
-    TextView tvMemo1;
+    TextView tvMemo;
 
     private String m_Text = "";
 
@@ -45,7 +45,13 @@ public class Memo1Fragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_memo1, container, false);
         ButterKnife.bind(this, view);
-        tvMemo1Text.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name"));
+        tvMemoText.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_1_name", "Memo Name"));
+
+
+        if(GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode",false)){
+            tvMemoText.setTextColor(getResources().getColor(R.color.light_gray));
+            tvMemo.setTextColor(getResources().getColor(R.color.light_gray));
+        }
 
         return view;
     }
