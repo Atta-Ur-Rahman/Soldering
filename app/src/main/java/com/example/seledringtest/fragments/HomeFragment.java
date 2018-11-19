@@ -189,7 +189,7 @@ public class HomeFragment extends Fragment {
     private void Refresh() {
 
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+        getActivity().overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
         getActivity().startActivity(getActivity().getIntent());
 //        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
