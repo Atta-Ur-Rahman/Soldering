@@ -38,7 +38,7 @@
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
-                android:layout_width="250sp"
+                android:layout_width="260sp"
                 android:layout_height="250sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
@@ -47,25 +47,25 @@
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
-                app:kCircularIndicatorColor="@color/white"
+                app:kCircularIndicatorColor="@color/full_drk"
                 app:kCircularIndicatorRelativePosition="0.5"
                 app:kCircularIndicatorRelativeRadius="0.1"
                 app:kDefaultState="0"
                 app:kFreeRotation="false"
                 app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/wheel"
+                app:kKnobDrawable="@drawable/wheel_drk"
                 app:kKnobDrawableRotates="false"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"
                 app:kNumberOfStates="13"
-                app:kSelectedStateMarkerColor="@color/knob_color"
+                app:kSelectedStateMarkerColor="@color/full_drk"
                 app:kSelectedStateMarkerContinuous="true"
                 app:kShowBalloonValues="false"
-                app:kStateMarkersAccentColor="@color/knob_color"
+                app:kStateMarkersAccentColor="@color/full_drk"
                 app:kStateMarkersAccentPeriodicity="5"
                 app:kStateMarkersAccentRelativeLength="0.09"
                 app:kStateMarkersAccentWidth="2dp"
-                app:kStateMarkersColor="@color/knob_color"
+                app:kStateMarkersColor="@color/full_drk"
                 app:kStateMarkersRelativeLength="0.08"
                 app:kStateMarkersWidth="1dp"
                 app:kSwipe="circular"
@@ -133,7 +133,7 @@
         android:layout_marginStart="47dp"
         app:trackTint="@color/black_color"
         android:layout_marginBottom="20dp"
-        android:thumb="@drawable/sun" />
+        android:thumb="@drawable/circle" />
 
     <TextView
         android:id="@+id/tv_func_led"

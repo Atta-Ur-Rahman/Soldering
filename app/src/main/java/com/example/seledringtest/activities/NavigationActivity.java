@@ -1,10 +1,17 @@
 package com.example.seledringtest.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,6 +44,18 @@ public class NavigationActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        if (GeneralUtilis.getSharedPreferences(this).getBoolean("night_mode",false)){
+            toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.light_gray));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.full_drk));
+        }else {
+            toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.full_drk));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.light_gray));
+        }
+
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -68,10 +87,10 @@ public class NavigationActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+       /* //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -102,4 +121,6 @@ public class NavigationActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

@@ -131,7 +131,7 @@
         android:layout_marginStart="47dp"
         android:layout_marginBottom="20dp"
         app:trackTint="@color/indicator_unselceted_color"
-        android:thumb="@drawable/sun" />
+        android:thumb="@drawable/day_night" />
 
     <TextView
         android:id="@+id/tv_func_led"

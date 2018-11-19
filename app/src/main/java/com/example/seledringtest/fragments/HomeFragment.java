@@ -20,6 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
@@ -27,8 +28,10 @@ import com.example.seledringtest.utilities.Constants;
 import com.example.seledringtest.utilities.GeneralUtilis;
 import com.example.seledringtest.utilities.Utils;
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
+
 import java.util.HashMap;
 import java.util.Set;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.beppi.knoblibrary.Knob;
@@ -76,6 +79,7 @@ public class HomeFragment extends Fragment {
         aBooleanNightMode = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false);
         if (aBooleanNightMode) {
             view = inflater.inflate(R.layout.fragment_home_night, container, false);
+
         } else {
             view = inflater.inflate(R.layout.fragment_home, container, false);
         }
@@ -86,7 +90,7 @@ public class HomeFragment extends Fragment {
         context = getActivity().getApplicationContext();
         res = getResources();
 
-        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_1",false)){
+        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_1", false)) {
             tvNoMemory.setVisibility(View.VISIBLE);
             tvNoMemory.setText("No Memory Present");
 
@@ -164,8 +168,6 @@ public class HomeFragment extends Fragment {
                     viewPager.setCurrentItem(3);
                 }
                 handler1.postDelayed(this, 100);
-
-
             }
         };
         handler1.postDelayed(runnable1, 300);
@@ -177,7 +179,7 @@ public class HomeFragment extends Fragment {
     private void Refresh() {
 
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.scale_out,R.anim.scale_in);
+        getActivity().overridePendingTransition(R.anim.scale_out, R.anim.scale_in);
         getActivity().startActivity(getActivity().getIntent());
     }
 
@@ -247,14 +249,15 @@ public class HomeFragment extends Fragment {
                         } else {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
                         }
-                    }  if (led.equals("Red")) {
+                    }
+                    if (led.equals("Red")) {
                         if (aBooleanNightMode) {
-                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
-                        } else {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_night"));
-
+                        } else {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
                         }
-                    }  if (led.equals("Gray")) {
+                    }
+                    if (led.equals("Gray")) {
                         if (aBooleanNightMode) {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_night"));
                         } else {
