@@ -14,32 +14,21 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.CompoundButton;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.seledringtest.R;
-import com.example.seledringtest.activities.MainActivity;
-import com.example.seledringtest.fragments.dotsViewFragment.Memo1Fragment;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
 import com.example.seledringtest.helpers.SolderingCommunicationService;
 import com.example.seledringtest.utilities.Constants;
 import com.example.seledringtest.utilities.GeneralUtilis;
 import com.example.seledringtest.utilities.Utils;
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
-
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.beppi.knoblibrary.Knob;
@@ -254,18 +243,18 @@ public class HomeFragment extends Fragment {
 
                     if (led.equals("Green")) {
                         if (aBooleanNightMode) {
-                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/sun"));
                         } else {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
                         }
-                    } else if (led.equals("Red")) {
+                    }  if (led.equals("Red")) {
                         if (aBooleanNightMode) {
-                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_night"));
-                        } else {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_day"));
+                        } else {
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_acceso_night"));
 
                         }
-                    } else if (led.equals("Gray")) {
+                    }  if (led.equals("Gray")) {
                         if (aBooleanNightMode) {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/laser_spento_night"));
                         } else {
