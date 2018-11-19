@@ -11,5 +11,7 @@
 
     <color name="drk_gray">#9E9E9E</color>
     <color name="indicator_unselceted_color">#BDBDBD</color>
+    <color name="black_color">#000000</color>
+    <color name="full_drk">#FF434141</color>
 
 </resources>

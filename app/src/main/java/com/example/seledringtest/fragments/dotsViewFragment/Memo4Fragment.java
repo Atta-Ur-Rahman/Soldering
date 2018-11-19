@@ -38,6 +38,11 @@ public class Memo4Fragment extends Fragment {
 
         tvMemoText.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_4_name","Memo Name"));
 
+
+        if(GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode",false)){
+            tvMemoText.setTextColor(getResources().getColor(R.color.light_gray));
+            tvMemo.setTextColor(getResources().getColor(R.color.light_gray));
+        }
         return view;
     }
 

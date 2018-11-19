@@ -38,6 +38,10 @@ public class Memo2Fragment extends Fragment {
 
         tvMemoText.setText(GeneralUtilis.getSharedPreferences(getActivity()).getString("memo_2_name", "Memo Name"));
 
+        if(GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode",false)){
+            tvMemoText.setTextColor(getResources().getColor(R.color.light_gray));
+            tvMemo1.setTextColor(getResources().getColor(R.color.light_gray));
+        }
         return view;
     }
 

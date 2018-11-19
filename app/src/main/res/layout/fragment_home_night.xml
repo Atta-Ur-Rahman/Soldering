@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/full_drk"
     android:orientation="vertical"
     tools:context="com.example.seledringtest.fragments.HomeFragment">
 
@@ -47,7 +47,7 @@
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
-                app:kCircularIndicatorColor="@color/white"
+                app:kCircularIndicatorColor="@color/drk_gray"
                 app:kCircularIndicatorRelativePosition="0.5"
                 app:kCircularIndicatorRelativeRadius="0.1"
                 app:kDefaultState="0"
@@ -82,6 +82,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="5sp"
             android:text="0"
+            android:textColor="@color/light_gray"
             android:textSize="60sp"
             android:textStyle="bold"/>
 
@@ -97,7 +98,8 @@
                 android:gravity="center"
                 android:layout_marginTop="10sp"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/light_gray"/>
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_memo"
             android:layout_width="match_parent"
@@ -112,9 +114,9 @@
             app:delimiterSize="5dp"
             app:itemIcon="@drawable/check"
             app:itemScale="1"
-            app:itemSelectedTint="@color/drk_gray"
+            app:itemSelectedTint="@color/light_gray"
             app:itemSize="12dp"
-            app:itemTint="@color/indicator_unselceted_color" />
+            app:itemTint="@color/drk_gray" />
 
 
 
@@ -129,8 +131,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="47dp"
+        app:trackTint="@color/black_color"
         android:layout_marginBottom="20dp"
-        app:trackTint="@color/indicator_unselceted_color"
         android:thumb="@drawable/sun" />
 
     <TextView
