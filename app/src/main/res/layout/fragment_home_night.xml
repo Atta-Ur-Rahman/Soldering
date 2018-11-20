@@ -24,6 +24,7 @@
                 android:src="@drawable/wheel_new"
                 android:layout_gravity="center_horizontal"/>
 
+
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
                 android:layout_width="260sp"
