@@ -44,4 +44,9 @@ public class GeneralUtilis {
         return fragment;
     }
 
+    public static Fragment withOutBackStackConnectFragmentWithoutAnimination(Context context, Fragment fragment) {
+        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        return fragment;
+    }
+
 }

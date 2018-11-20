@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        GeneralUtilis.withOutBackStackConnectFragment(this,new HomeFragment());
+        GeneralUtilis.withOutBackStackConnectFragmentWithoutAnimination(this,new HomeFragment());
 
     }
 
