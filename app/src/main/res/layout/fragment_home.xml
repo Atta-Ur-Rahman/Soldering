@@ -19,9 +19,9 @@
 
             <ImageView
                 android:id="@+id/image_arrow"
-                android:layout_width="250sp"
-                android:layout_height="250dp"
-                android:src="@drawable/arrow"
+                android:layout_width="300sp"
+                android:layout_height="270dp"
+                android:src="@drawable/wheel_new"
                 android:layout_gravity="center_horizontal"/>
 
             <it.beppi.knoblibrary.Knob

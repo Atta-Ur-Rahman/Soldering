@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
                 KnobSate = state;
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
-                ivArrow.animate().rotation(state*15).start();
+                ivArrow.animate().rotation(state*20).start();
 
             }
         });
