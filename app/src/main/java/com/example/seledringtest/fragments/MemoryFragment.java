@@ -163,6 +163,10 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
         final EditText etPower = dialogView.findViewById(R.id.et_power);
         Button btnSave = dialogView.findViewById(R.id.btn_save);
 
+
+        etName.setText(tvName.getText().toString());
+        etPower.setText(tvPower.getText().toString());
+
         ivCross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,6 +179,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
             public void onClick(View v) {
                 strName = etName.getText().toString();
                 strPower = etPower.getText().toString();
+
 
                 if (strName.equals("")) {
                     etName.setError("enter memo name");

@@ -102,14 +102,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 GeneralUtilis.putValueInEditor(getActivity()).putBoolean("night_mode", isChecked).commit();
-                Refresh();
+                Refresh(false);
             }
         });
 
 ////refresh the hime fragment
         if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("refresh", false)) {
             GeneralUtilis.putValueInEditor(getActivity()).putBoolean("refresh", false).commit();
-            Refresh();
+            Refresh(true);
         }
 
         getValueOnMemoryFragment();
@@ -176,10 +176,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void Refresh() {
+    private void Refresh(boolean with_out_animinatio) {
+
 
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.scale_out, R.anim.scale_in);
+        if (with_out_animinatio) {
+            getActivity().overridePendingTransition(R.anim.scale_out, R.anim.scale_in);
+        }
         getActivity().startActivity(getActivity().getIntent());
     }
 
