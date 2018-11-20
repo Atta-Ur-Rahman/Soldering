@@ -17,24 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <it.beppi.knoblibrary.Knob
-                android:id="@+id/knob_arrow"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                app:kAnimation="true"
-                app:kBorderColor="@color/knob_color"
-                app:kFreeRotation="true"
-                app:kIndicatorRelativeLength="0"
-                app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/arrow"
-                app:kKnobDrawableRotates="true"
-                app:kNumberOfStates="9"
-                app:kShowBalloonValues="false"
-                app:kStateMarkersColor="@color/knob_color"
-                app:kSwipe="circular" />
+            <ImageView
+                android:id="@+id/image_arrow"
+                android:layout_width="300sp"
+                android:layout_height="270dp"
+                android:src="@drawable/wheel_new"
+                android:layout_gravity="center_horizontal"/>
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
