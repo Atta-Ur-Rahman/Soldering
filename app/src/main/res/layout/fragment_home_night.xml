@@ -37,7 +37,7 @@
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
-                app:kCircularIndicatorColor="@color/white"
+                app:kCircularIndicatorColor="@color/full_drk"
                 app:kCircularIndicatorRelativePosition="0.5"
                 app:kCircularIndicatorRelativeRadius="0.1"
                 app:kDefaultState="0"

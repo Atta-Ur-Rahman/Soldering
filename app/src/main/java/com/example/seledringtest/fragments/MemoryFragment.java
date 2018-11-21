@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,8 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
     @BindView(R.id.sw_memo4)
     SwitchCompat swMemo4;
 
+    @BindView(R.id.ll_memory)LinearLayout llMemory;
+
     private Dialog editDailog;
     private String strName, strPower;
     private int power;
@@ -75,6 +78,10 @@ public class MemoryFragment extends Fragment implements View.OnClickListener, Co
         view = inflater.inflate(R.layout.fragment_memory, container, false);
 
         ButterKnife.bind(this, view);
+
+        if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode",false)){
+            llMemory.setBackgroundColor(getResources().getColor(R.color.full_drk));
+        }
 
 
         tvMemo1Edit.setOnClickListener(this);

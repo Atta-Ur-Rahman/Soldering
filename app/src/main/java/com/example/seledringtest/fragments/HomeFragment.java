@@ -197,7 +197,7 @@ public class HomeFragment extends Fragment {
 
         getActivity().finish();
         if (with_out_animinatio) {
-            getActivity().overridePendingTransition(R.anim.scale_out, R.anim.scale_in);
+//            getActivity().overridePendingTransition(R.anim.scale_out, R.anim.scale_in);
         }
         getActivity().startActivity(getActivity().getIntent());
     }
@@ -264,7 +264,7 @@ public class HomeFragment extends Fragment {
 
                     if (led.equals("Green")) {
                         if (aBooleanNightMode) {
-                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/sun"));
+                            ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
                         } else {
                             ivLedFunction.setImageURI(Uri.parse("android.resource://" + context.getPackageName() + "/drawable/green"));
                         }
