@@ -18,16 +18,28 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:visibility="gone"
+                android:layout_width="250sp"
+                android:layout_height="250sp"
+                android:src="@drawable/wheel"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:visibility="gone"
                 android:id="@+id/image_arrow"
-                android:layout_width="300sp"
-                android:layout_height="270dp"
-                android:src="@drawable/wheel_new"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_width="250sp"
+                android:layout_height="250dp"
+                android:src="@drawable/wheel2"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"/>
+
+
+
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
-                android:layout_width="250sp"
-                android:layout_height="250sp"
+                android:layout_width="270sp"
+                android:layout_height="270sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
                 app:kAnimationSpeed="10"
