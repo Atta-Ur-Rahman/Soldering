@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-////refresh the hime fragment
+        //refresh the home fragment
         if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("refresh", false)) {
             GeneralUtilis.putValueInEditor(getActivity()).putBoolean("refresh", false).commit();
             Refresh(true);
