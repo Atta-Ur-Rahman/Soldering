@@ -55,11 +55,6 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.tv_no_memory)
     TextView tvNoMemory;
 
-    @BindView(R.id.knob_arrow)
-    Knob knobArrow;
-
-    @BindView(R.id.image_arrow)
-    ImageView ivArrow;
 
     @BindView(R.id.sw_night_mod)
     SwitchCompat swNightMode;
@@ -132,25 +127,15 @@ public class HomeFragment extends Fragment {
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
 
-                int stateknob = state;
 
-                Log.d("knobstate",String.valueOf(stateknob));
+                Log.d("knobstate",String.valueOf(state));
 
-                if (stateknob >= 7) {
-                    knobArrow.setState(state+6);
-                } else {
-                    knobArrow.setState(stateknob + 6);
-                }
-
-
-//                ivArrow.animate().rotation(state*20);
 
 
             }
         });
 
-
-        adapter = new MemoAdapter(getActivity(), getActivity().getSupportFragmentManager());
+       adapter = new MemoAdapter(getActivity(), getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
