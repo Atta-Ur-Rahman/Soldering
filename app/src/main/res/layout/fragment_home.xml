@@ -59,8 +59,8 @@
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
-                android:layout_width="270sp"
-                android:layout_height="270sp"
+                android:layout_width="280sp"
+                android:layout_height="280sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
                 app:kAnimationSpeed="10"
@@ -70,7 +70,7 @@
                 app:kBorderWidth="0dp"
                 app:kCircularIndicatorColor="@color/knob_color"
                 app:kCircularIndicatorRelativePosition="0.5"
-                app:kCircularIndicatorRelativeRadius="0.1"
+                app:kCircularIndicatorRelativeRadius="0.14"
                 app:kDefaultState="0"
                 app:kFreeRotation="false"
                 app:kIndicatorWidth="0dp"
