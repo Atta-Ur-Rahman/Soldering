@@ -123,7 +123,7 @@
         android:layout_marginStart="47dp"
         app:trackTint="@color/black_color"
         android:layout_marginBottom="20dp"
-        android:thumb="@drawable/circle" />
+        android:thumb="@drawable/zma_circle" />
 
     <TextView
         android:id="@+id/tv_func_led"

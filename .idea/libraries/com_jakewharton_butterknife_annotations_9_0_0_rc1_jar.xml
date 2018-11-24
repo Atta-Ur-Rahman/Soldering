@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.jakewharton:butterknife-annotations:9.0.0-rc1@jar">
+  <library name="com.jakewharton:butterknife-annotations:9.0.0-rc1@jar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/9.0.0-rc1/8bd045c54e9ce27eb592dc83bf9514ac0fd35791/butterknife-annotations-9.0.0-rc1.jar!/" />
     </CLASSES>

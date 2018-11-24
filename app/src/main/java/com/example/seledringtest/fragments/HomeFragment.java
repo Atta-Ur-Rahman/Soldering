@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.tv_no_memory)
     TextView tvNoMemory;
 
-    @BindView(R.id.image_arrow)ImageView ivArrow;
+//    @BindView(R.id.image_arrow)ImageView ivArrow;
 
     @BindView(R.id.sw_night_mod)
     SwitchCompat swNightMode;
@@ -91,18 +91,6 @@ public class HomeFragment extends Fragment {
 
         context = getActivity().getApplicationContext();
         res = getResources();
-
-
-
-
-        ivArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivArrow.animate().rotation(10).start();
-            }
-        });
-
-
 
         if (GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("sw_memo_1", false)) {
             tvNoMemory.setVisibility(View.VISIBLE);
@@ -139,7 +127,6 @@ public class HomeFragment extends Fragment {
                 KnobSate = state;
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
-                ivArrow.animate().rotation(state*20).start();
 
             }
         });

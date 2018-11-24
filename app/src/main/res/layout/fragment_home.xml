@@ -17,27 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:visibility="gone"
-                android:layout_width="250sp"
-                android:layout_height="250sp"
-                android:src="@drawable/wheel"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/image_arrow"
-                android:layout_width="250sp"
-                android:layout_height="250dp"
-                android:src="@drawable/wheel2"
-                android:layout_gravity="center"
-                android:scaleType="fitXY"/>
-
-
-
 
             <it.beppi.knoblibrary.Knob
-                android:id="@+id/knob"
                 android:layout_width="270sp"
                 android:layout_height="270sp"
                 android:layout_gravity="center"
@@ -53,7 +34,7 @@
                 app:kDefaultState="0"
                 app:kFreeRotation="false"
                 app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/wheel"
+                app:kKnobDrawable="@drawable/zma_circle"
                 app:kKnobDrawableRotates="false"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"
@@ -70,6 +51,31 @@
                 app:kStateMarkersWidth="1dp"
                 app:kSwipe="circular"
                 app:kSwipeSensitivityPixels="15" />
+
+            <it.beppi.knoblibrary.Knob
+                android:id="@+id/knob"
+                android:layout_width="270sp"
+                android:layout_height="270sp"
+                android:layout_marginTop="5sp"
+                app:kKnobDrawable="@drawable/goal"
+                android:layout_gravity="center"
+                app:kAnimationBounciness="20"
+                app:kAnimationSpeed="10"
+                app:kBalloonValuesRelativePosition="0.25"
+                app:kBorderWidth="0dp"
+                app:kDefaultState="10"
+                app:kIndicatorWidth="0dp"
+                app:kMaxAngle="120"
+                app:kMinAngle="-120"
+                app:kNumberOfStates="13"
+                app:kKnobCenterColor="@color/white"
+                app:kStateMarkersWidth="1dp"
+                app:kSwipe="circular"
+                app:kSwipeSensitivityPixels="15"
+                app:kStateMarkersRelativeLength="0.08"
+                app:kStateMarkersAccentColor="@color/knob_color"
+                />
+
 
 
         </FrameLayout>
