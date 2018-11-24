@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="225sp"
+                android:layout_width="220sp"
                 android:layout_height="250sp"
                 android:src="@drawable/zma_circle"
                 android:layout_gravity="center"/>
@@ -65,11 +65,11 @@
                 android:layout_marginTop="5sp"
                 app:kKnobDrawable="@drawable/goal"
                 android:layout_gravity="center"
-                app:kAnimationBounciness="20"
+                app:kAnimationBounciness="10"
                 app:kAnimationSpeed="10"
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBorderWidth="0dp"
-                app:kDefaultState="10"
+                app:kDefaultState="60"
                 app:kIndicatorWidth="0dp"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"
