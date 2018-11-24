@@ -14,13 +14,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
@@ -57,8 +55,11 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.tv_no_memory)
     TextView tvNoMemory;
 
+    @BindView(R.id.knob_arrow)
+    Knob knobArrow;
 
-    @BindView(R.id.image_arrow)ImageView ivArrow;
+    @BindView(R.id.image_arrow)
+    ImageView ivArrow;
 
     @BindView(R.id.sw_night_mod)
     SwitchCompat swNightMode;
@@ -90,8 +91,6 @@ public class HomeFragment extends Fragment {
 
 
         ButterKnife.bind(this, view);
-
-
 
 
         context = getActivity().getApplicationContext();
@@ -133,8 +132,18 @@ public class HomeFragment extends Fragment {
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
 
-                ivArrow.animate().rotation(state*20);
+                int stateknob = state;
 
+                Log.d("knobstate",String.valueOf(stateknob));
+
+                if (stateknob >= 7) {
+                    knobArrow.setState(state+6);
+                } else {
+                    knobArrow.setState(stateknob + 6);
+                }
+
+
+//                ivArrow.animate().rotation(state*20);
 
 
             }
@@ -161,8 +170,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
 
 
         final Handler handler1 = new Handler();
@@ -336,6 +343,17 @@ public class HomeFragment extends Fragment {
         aBooleanMemo2 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo2", true);
         aBooleanMemo3 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo3", true);
         aBooleanMemo4 = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("memo4", true);
+    }
+
+
+    public int ReturnKnob(int state) {
+
+        if (KnobSate == 6) {
+
+        }
+
+        return state;
+
     }
 
 
