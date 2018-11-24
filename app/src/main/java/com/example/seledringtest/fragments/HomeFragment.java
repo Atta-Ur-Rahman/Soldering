@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -56,7 +57,8 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.tv_no_memory)
     TextView tvNoMemory;
 
-//    @BindView(R.id.image_arrow)ImageView ivArrow;
+
+    @BindView(R.id.image_arrow)ImageView ivArrow;
 
     @BindView(R.id.sw_night_mod)
     SwitchCompat swNightMode;
@@ -88,6 +90,9 @@ public class HomeFragment extends Fragment {
 
 
         ButterKnife.bind(this, view);
+
+
+
 
         context = getActivity().getApplicationContext();
         res = getResources();
@@ -128,6 +133,10 @@ public class HomeFragment extends Fragment {
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
 
+                ivArrow.animate().rotation(state*20);
+
+
+
             }
         });
 
@@ -154,6 +163,8 @@ public class HomeFragment extends Fragment {
         });
 
 
+
+
         final Handler handler1 = new Handler();
         final Runnable runnable1 = new Runnable() {
             @Override
@@ -170,7 +181,7 @@ public class HomeFragment extends Fragment {
                 } else if (power == memoPower4) {
                     viewPager.setCurrentItem(3);
                 }
-                handler1.postDelayed(this, 100);
+                handler1.postDelayed(this, 10);
             }
         };
         handler1.postDelayed(runnable1, 300);
