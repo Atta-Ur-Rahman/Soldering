@@ -18,18 +18,19 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="220sp"
-                android:layout_height="250sp"
-                android:src="@drawable/zama_circle"
+                android:layout_width="250sp"
+                android:layout_height="240sp"
+                android:src="@drawable/black_circle"
                 android:layout_gravity="center"/>
 
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
                 android:layout_width="260sp"
-                android:layout_height="260sp"
+                android:layout_height="240sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
+                android:layout_marginRight="5sp"
                 app:kAnimationSpeed="10"
                 app:kBalloonValuesAnimation="@anim/fade_and_pop_in"
                 app:kBalloonValuesRelativePosition="0.25"
@@ -39,7 +40,7 @@
                 app:kCircularIndicatorRelativePosition="0.5"
                 app:kCircularIndicatorRelativeRadius="0.12"
                 app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/goal"
+                app:kKnobDrawable="@drawable/black_knob"
                 app:kKnobDrawableRotates="true"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"

@@ -18,28 +18,30 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="220sp"
-                android:layout_height="250sp"
-                android:src="@drawable/zama_circle"
+                android:layout_width="230sp"
+                android:layout_height="240sp"
+                android:src="@drawable/two"
+                android:scaleType="fitXY"
                 android:layout_gravity="center"/>
 
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
-                android:layout_width="260sp"
-                android:layout_height="260sp"
+                android:layout_width="282sp"
+                android:layout_height="280sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
                 app:kAnimationSpeed="10"
+                android:layout_marginTop="5sp"
                 app:kBalloonValuesAnimation="@anim/fade_and_pop_in"
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
                 app:kCircularIndicatorColor="@color/white"
-                app:kCircularIndicatorRelativePosition="0.5"
+                app:kCircularIndicatorRelativePosition="1.5"
                 app:kCircularIndicatorRelativeRadius="0.12"
                 app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/goal"
+                app:kKnobDrawable="@drawable/one"
                 app:kKnobDrawableRotates="true"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"
@@ -61,7 +63,6 @@
 
 
         </FrameLayout>
-
 
         <TextView
             android:id="@+id/tv_knob_power"
