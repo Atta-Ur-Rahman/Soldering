@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
 
 
 
+/*
 
         int screenHeight = getActivity().getApplicationContext().getResources().getDisplayMetrics().heightPixels;
         int screenWidth = getActivity().getApplicationContext().getResources().getDisplayMetrics().widthPixels;
@@ -92,6 +93,7 @@ public class HomeFragment extends Fragment {
         }
 
         Toast.makeText(getActivity(), String.valueOf(screenHeight+"  "+screenWidth), Toast.LENGTH_SHORT).show();
+*/
 
 
         aBooleanNightMode = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false);
