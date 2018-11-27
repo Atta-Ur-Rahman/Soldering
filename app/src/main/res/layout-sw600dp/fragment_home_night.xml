@@ -1,0 +1,147 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/full_drk"
+    android:orientation="vertical"
+    tools:context="com.example.seledringtest.fragments.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <it.beppi.knoblibrary.Knob
+                android:id="@+id/knob"
+                android:layout_width="400sp"
+                android:layout_height="400sp"
+                android:layout_gravity="center"
+                app:kAnimationBounciness="20"
+                app:kAnimationSpeed="10"
+                app:kBalloonValuesAnimation="@anim/fade_and_pop_in"
+                app:kBalloonValuesRelativePosition="0.25"
+                app:kBalloonValuesTextSize="4sp"
+                app:kBorderWidth="0dp"
+                app:kCircularIndicatorColor="@color/full_drk"
+                app:kCircularIndicatorRelativePosition="0.32"
+                app:kCircularIndicatorRelativeRadius="0.10"
+                app:kIndicatorWidth="3dp"
+                app:kKnobDrawable="@drawable/wheel_black"
+                app:kKnobDrawableRotates="false"
+                app:kMaxAngle="120"
+                app:kMinAngle="-120"
+                app:kNumberOfStates="13"
+                app:kFreeRotation="false"
+                app:kSelectedStateMarkerColor="@color/white"
+                app:kSelectedStateMarkerContinuous="false"
+                app:kShowBalloonValues="false"
+                app:kStateMarkersAccentColor="@color/white"
+                app:kStateMarkersAccentPeriodicity="5"
+                app:kStateMarkersAccentRelativeLength="0.09"
+                app:kStateMarkersAccentWidth="0dp"
+                app:kStateMarkersColor="@color/white"
+                app:kStateMarkersRelativeLength="0.09"
+                app:kStateMarkersWidth="1dp"
+                app:kSwipe="circular"
+                app:kSwipeSensitivityPixels="15" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tv_knob_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5sp"
+            android:text="0"
+            android:textColor="@color/light_gray"
+            android:textSize="80sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:orientation="vertical">
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_no_memory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/light_gray"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_memo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
+            android:id="@+id/view_pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            app:delimiterSize="10dp"
+            app:itemIcon="@drawable/check"
+            app:itemScale="2"
+            app:itemSelectedTint="@color/light_gray"
+            app:itemSize="12dp"
+            app:itemTint="@color/drk_gray" />
+
+
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/sw_night_mod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="47dp"
+        app:trackTint="@color/black_color"
+        android:layout_marginBottom="20dp"
+        android:thumb="@drawable/day_night" />
+
+    <TextView
+        android:id="@+id/tv_func_led"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginRight="60sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:layout_toLeftOf="@id/iv_function_led"
+        android:text="Functional Led" />
+
+
+    <ImageView
+        android:id="@+id/iv_function_led"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
+        android:scaleType="fitXY"
+        android:src="@drawable/laser_acceso_day" />
+
+
+</RelativeLayout>

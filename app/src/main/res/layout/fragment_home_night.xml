@@ -15,14 +15,8 @@
         <FrameLayout
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!--<ImageView-->
-                <!--android:layout_width="260sp"-->
-                <!--android:layout_height="250sp"-->
-                <!--android:src="@drawable/black_two"-->
-                <!--android:layout_gravity="center"/>-->
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp">
 
 
             <it.beppi.knoblibrary.Knob

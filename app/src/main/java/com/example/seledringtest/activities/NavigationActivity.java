@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.HomeFragment;
@@ -122,5 +123,16 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
+        Toast.makeText(this, "onRetart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+    }
 }

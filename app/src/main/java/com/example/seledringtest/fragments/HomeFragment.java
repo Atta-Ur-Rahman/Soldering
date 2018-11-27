@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SwitchCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seledringtest.R;
 import com.example.seledringtest.fragments.dotsViewFragment.MemoAdapter;
@@ -76,6 +78,22 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
+
+
+        int screenHeight = getActivity().getApplicationContext().getResources().getDisplayMetrics().heightPixels;
+        int screenWidth = getActivity().getApplicationContext().getResources().getDisplayMetrics().widthPixels;
+        if (screenHeight <= 800 & screenWidth <= 480) {
+            Toast.makeText(getActivity(), "less", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
+
+        }
+
+        Toast.makeText(getActivity(), String.valueOf(screenHeight+"  "+screenWidth), Toast.LENGTH_SHORT).show();
+
+
         aBooleanNightMode = GeneralUtilis.getSharedPreferences(getActivity()).getBoolean("night_mode", false);
         if (aBooleanNightMode) {
             view = inflater.inflate(R.layout.fragment_home_night, container, false);
@@ -83,6 +101,7 @@ public class HomeFragment extends Fragment {
         } else {
             view = inflater.inflate(R.layout.fragment_home, container, false);
         }
+
 
 
         ButterKnife.bind(this, view);
@@ -127,15 +146,13 @@ public class HomeFragment extends Fragment {
                 GeneralUtilis.putValueInEditor(getActivity()).putInt("knob_value", state).commit();
 
 
-
-                Log.d("knobstate",String.valueOf(state));
-
+                Log.d("knobstate", String.valueOf(state));
 
 
             }
         });
 
-       adapter = new MemoAdapter(getActivity(), getActivity().getSupportFragmentManager());
+        adapter = new MemoAdapter(getActivity(), getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPagerIndicator.setupWithViewPager(viewPager);
         viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
