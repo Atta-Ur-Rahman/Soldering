@@ -17,44 +17,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="250sp"
-                android:layout_height="240sp"
-                android:src="@drawable/black_circle"
-                android:layout_gravity="center"/>
+            <!--<ImageView-->
+                <!--android:layout_width="260sp"-->
+                <!--android:layout_height="250sp"-->
+                <!--android:src="@drawable/black_two"-->
+                <!--android:layout_gravity="center"/>-->
+
 
 
             <it.beppi.knoblibrary.Knob
                 android:id="@+id/knob"
-                android:layout_width="260sp"
-                android:layout_height="240sp"
+                android:layout_width="280sp"
+                android:layout_height="280sp"
                 android:layout_gravity="center"
                 app:kAnimationBounciness="20"
-                android:layout_marginRight="5sp"
                 app:kAnimationSpeed="10"
                 app:kBalloonValuesAnimation="@anim/fade_and_pop_in"
                 app:kBalloonValuesRelativePosition="0.25"
                 app:kBalloonValuesTextSize="4sp"
                 app:kBorderWidth="0dp"
                 app:kCircularIndicatorColor="@color/full_drk"
-                app:kCircularIndicatorRelativePosition="0.5"
-                app:kCircularIndicatorRelativeRadius="0.12"
-                app:kIndicatorWidth="0dp"
-                app:kKnobDrawable="@drawable/black_knob"
-                app:kKnobDrawableRotates="true"
+                app:kCircularIndicatorRelativePosition="0.32"
+                app:kCircularIndicatorRelativeRadius="0.10"
+                app:kIndicatorWidth="3dp"
+                app:kKnobDrawable="@drawable/wheel_black"
+                app:kKnobDrawableRotates="false"
                 app:kMaxAngle="120"
                 app:kMinAngle="-120"
                 app:kNumberOfStates="13"
                 app:kFreeRotation="false"
-                app:kSelectedStateMarkerColor="@color/full_drk"
+                app:kSelectedStateMarkerColor="@color/white"
                 app:kSelectedStateMarkerContinuous="false"
                 app:kShowBalloonValues="false"
-                app:kStateMarkersAccentColor="@color/full_drk"
+                app:kStateMarkersAccentColor="@color/white"
                 app:kStateMarkersAccentPeriodicity="5"
                 app:kStateMarkersAccentRelativeLength="0.09"
                 app:kStateMarkersAccentWidth="0dp"
-                app:kStateMarkersColor="@color/full_drk"
-                app:kStateMarkersRelativeLength="0.08"
+                app:kStateMarkersColor="@color/white"
+                app:kStateMarkersRelativeLength="0.09"
                 app:kStateMarkersWidth="1dp"
                 app:kSwipe="circular"
                 app:kSwipeSensitivityPixels="15" />
